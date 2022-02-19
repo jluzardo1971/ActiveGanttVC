@@ -1,0 +1,90 @@
+[ uuid(8F596921-8F42-4657-A7F3-2B6F29AFC1AD), version(1.0), helpfile("MSP2003.hlp"), helpstring("ActiveGanttVC Microsoft Project 2003 Integration Library"), control ]
+library MSP2003Lib
+{
+	#include <olectl.h>
+	#include <idispids.h>
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+//************************************************************************************
+
+	//  Primary dispatch interface for Duration
+	[ uuid(5B631854-7241-4D72-84A5-0BA924311EEB) ] 
+	dispinterface IDuration
+	{
+	properties:
+		[id(4)] LONG Year;
+		[id(5)] LONG Month;
+		[id(6)] LONG Day;
+		[id(7)] LONG Hour;
+		[id(8)] LONG Minute;
+		[id(9)] LONG Second;
+	methods:
+		[id(1)] BOOLEAN IsNull(void);
+		[id(2)] BSTR ToString(void);
+		[id(3)] BSTR FromString(BSTR sString);
+
+	};
+	
+	[ uuid(BC281BF6-AB62-41A9-9A7B-36B5925B250A) ] 
+	coclass Duration
+	{
+		[default] dispinterface IDuration;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for Time
+	[ uuid(D183CB6A-473E-4972-88F7-FC0AD4976725) ] 
+	dispinterface ITime
+	{
+	properties:
+		[id(4)] LONG Hour;
+		[id(5)] LONG Minute;
+		[id(6)] LONG Second;
+	
+	methods:
+		[id(1)] BOOLEAN IsNull(void);
+		[id(2)] BSTR ToString(void);
+		[id(3)] BSTR FromString(BSTR sString);
+
+	};
+	
+	[ uuid(6CDE1924-A382-4306-AFC6-47B86EED4076) ] 
+	coclass Time
+	{
+		[default] dispinterface ITime;
+	};
+
+//************************************************************************************
+
+	#include "odl_inc.odl"
+
+//************************************************************************************
+
+
+	[ uuid(B0B2A085-471B-4B3F-BCA1-D173FD22420F), helpstring("Dispatch interface for MSP2003 Control"), hidden ] 
+	dispinterface _DMSP2003
+	{
+		properties:
+			[id(2)] IMP11* MP11;
+		methods:
+			[id(1)] void AboutBox();
+			[id(3)] void Clear(void);
+	};
+
+	[ uuid(64A23DEC-E58E-4EA0-A646-79A8DE162F7C), helpstring("Event interface for MSP2003 Control") ] 
+	dispinterface _DMSP2003Events
+	{
+		properties:
+		methods:
+			[id(1)] void ControlError(long Number, BSTR Description, BSTR Source);
+	};
+
+	[ uuid(AF1509E7-4A8C-4306-8116-E511D4FF5582), helpstring("AG Microsoft Project 2003 XML Integration Control"), control ] 
+	coclass MSP2003Ctl
+	{
+		[default] dispinterface _DMSP2003;
+		[default, source] dispinterface _DMSP2003Events;
+	};
+};

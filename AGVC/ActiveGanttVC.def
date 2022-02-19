@@ -1,0 +1,9 @@
+; ActiveGanttVC.def : Declares the module parameters.
+
+LIBRARY      "AGVC.OCX"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

@@ -1,0 +1,9 @@
+; MSP2003.def : Declares the module parameters.
+
+LIBRARY      "MSP2003.OCX"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ActiveGanttVCWrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AGVCCON.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clsDB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DST_ACCESS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCarRental.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCarRentalBranch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCarRentalReservation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCarRentalVehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCustomDrawing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fDurationTasks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fFastLoading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fLoadXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fMSProject11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fMSProject12.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fMSProject14.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fPrintDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fPrintPreview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fRCT_DAY.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fRCT_MONTH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fRCT_WEEK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fRCT_YEAR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSortRows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fWBSPProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fWBSProject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fWBSProjectTaskView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSFLEXGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSP2003Wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSP2007Wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSP2010Wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolTipToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCustomTickMarkAreaDraw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fCustomTickMarkTextDraw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fTemplates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSTL_Anakiwa_Blue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSTL_MSP2003.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSTL_MSP2007.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSTL_MSP2010.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fSTL_CR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ActiveGanttVCWrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AGVCCON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DST_ACCESS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCarRental.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCarRentalBranch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCarRentalReservation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCarRentalVehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCustomDrawing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fDurationTasks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fFastLoading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fLoadXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fMSProject11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fMSProject12.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fMSProject14.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fPrintDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fPrintPreview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fRCT_DAY.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fRCT_MONTH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fRCT_WEEK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fRCT_YEAR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSortRows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fWBSPProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fWBSProject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fWBSProjectTaskView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSFLEXGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSP2003Wrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSP2007Wrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSP2010Wrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolTipToolBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCustomTickMarkAreaDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fCustomTickMarkTextDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fTemplates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSTL_Anakiwa_Blue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSTL_MSP2003.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSTL_MSP2007.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSTL_MSP2010.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fSTL_CR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ActiveGantt.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\AGVCCON.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\AGVCCON.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\bluefolderclosed.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\bluefolderopen.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fCarRental.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fLoadXML.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fMSProject.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\folderclosed.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\folderopen.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fPrintPreview.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fWBSProject.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\getting_started.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\icon-graph.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\internet.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\localCHMdocumentation.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\onlinedocumentation.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\modules.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\task.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\projectnote.gif">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fMainBanner.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fPrintPreview2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fTemplates.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AGVCCON.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

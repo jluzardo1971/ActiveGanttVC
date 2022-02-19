@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="SCSCustomer|Win32">
+      <Configuration>SCSCustomer</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="SCSDemo|Win32">
+      <Configuration>SCSDemo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|Win32">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D38E6731-2E65-45C0-865D-C0DF4270A608}</ProjectGuid>
+    <RootNamespace>MSP2007</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">false</LinkIncremental>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">.ocx</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">.ocx</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">.ocx</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\MSP2007.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/MSP2007.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\Bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\MSP2007.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\MSXML 4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\MSP2007.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Bin/MSP2007.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/MSP2007.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\DebugU/MSP2007.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\MSP2007.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/MSP2007.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\Bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\MSP2007.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\MSXML 4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\MSP2007.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Bin/MSP2007.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/MSP2007.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\ReleaseU/MSP2007.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\MSP2007.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/MSP2007.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\Bin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\MSP2007.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\MSP2007.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Bin/MSP2007.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/MSP2007.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\ReleaseU/MSP2007.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Assignment.cpp" />
+    <ClCompile Include="AssignmentBaseline.cpp" />
+    <ClCompile Include="AssignmentBaseline_C.cpp" />
+    <ClCompile Include="AssignmentExtendedAttribute.cpp" />
+    <ClCompile Include="AssignmentExtendedAttribute_C.cpp" />
+    <ClCompile Include="Assignments.cpp" />
+    <ClCompile Include="Calendar.cpp" />
+    <ClCompile Include="CalendarException.cpp" />
+    <ClCompile Include="CalendarExceptions.cpp" />
+    <ClCompile Include="Calendars.cpp" />
+    <ClCompile Include="CalendarWeekDay.cpp" />
+    <ClCompile Include="CalendarWeekDays.cpp" />
+    <ClCompile Include="CalendarWorkWeek.cpp" />
+    <ClCompile Include="CalendarWorkWeeks.cpp" />
+    <ClCompile Include="clsCollectionBase.cpp" />
+    <ClCompile Include="clsItemBase.cpp" />
+    <ClCompile Include="clsXML.cpp" />
+    <ClCompile Include="Duration.cpp" />
+    <ClCompile Include="ExtendedAttribute.cpp" />
+    <ClCompile Include="ExtendedAttributes.cpp" />
+    <ClCompile Include="ExtendedAttributeValue.cpp" />
+    <ClCompile Include="ExtendedAttributeValueList.cpp" />
+    <ClCompile Include="GlobalFunctions.cpp" />
+    <ClCompile Include="MP12.cpp" />
+    <ClCompile Include="MSP2007.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="MSP2007Ctl.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="MSP2007Ppg.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="OutlineCode.cpp" />
+    <ClCompile Include="OutlineCodeMask.cpp" />
+    <ClCompile Include="OutlineCodeMasks.cpp" />
+    <ClCompile Include="OutlineCodes.cpp" />
+    <ClCompile Include="OutlineCodeValue.cpp" />
+    <ClCompile Include="OutlineCodeValues.cpp" />
+    <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="ResourceAvailabilityPeriod.cpp" />
+    <ClCompile Include="ResourceAvailabilityPeriods.cpp" />
+    <ClCompile Include="ResourceBaseline.cpp" />
+    <ClCompile Include="ResourceBaseline_C.cpp" />
+    <ClCompile Include="ResourceExtendedAttribute.cpp" />
+    <ClCompile Include="ResourceExtendedAttribute_C.cpp" />
+    <ClCompile Include="ResourceOutlineCode.cpp" />
+    <ClCompile Include="ResourceOutlineCode_C.cpp" />
+    <ClCompile Include="ResourceRate.cpp" />
+    <ClCompile Include="ResourceRates.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">Create</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">Create</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TaskBaseline.cpp" />
+    <ClCompile Include="TaskBaseline_C.cpp" />
+    <ClCompile Include="TaskExtendedAttribute.cpp" />
+    <ClCompile Include="TaskExtendedAttribute_C.cpp" />
+    <ClCompile Include="TaskOutlineCode.cpp" />
+    <ClCompile Include="TaskOutlineCode_C.cpp" />
+    <ClCompile Include="TaskPredecessorLink.cpp" />
+    <ClCompile Include="TaskPredecessorLink_C.cpp" />
+    <ClCompile Include="Tasks.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TimePeriod.cpp" />
+    <ClCompile Include="TimePeriods.cpp" />
+    <ClCompile Include="TimephasedData.cpp" />
+    <ClCompile Include="TimephasedData_C.cpp" />
+    <ClCompile Include="WBSMask.cpp" />
+    <ClCompile Include="WBSMasks.cpp" />
+    <ClCompile Include="WeekDay.cpp" />
+    <ClCompile Include="WeekDay_C.cpp" />
+    <ClCompile Include="WorkingTime.cpp" />
+    <ClCompile Include="WorkingTimes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MSP2007.def" />
+    <None Include="..\..\..\..\ART WORK\MS Project\2007_15x16.bmp" />
+    <None Include="..\..\..\..\ART WORK\MS Project\2007_32x32.bmp" />
+    <None Include="MSP2007.ico" />
+    <None Include="MSP2007Ctl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="MSP2007.odl">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">Win32</TargetEnvironment>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">Win32</TargetEnvironment>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Win32</TargetEnvironment>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MSP2007.rc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assignment.h" />
+    <ClInclude Include="AssignmentBaseline.h" />
+    <ClInclude Include="AssignmentBaseline_C.h" />
+    <ClInclude Include="AssignmentExtendedAttribute.h" />
+    <ClInclude Include="AssignmentExtendedAttribute_C.h" />
+    <ClInclude Include="Assignments.h" />
+    <ClInclude Include="Calendar.h" />
+    <ClInclude Include="CalendarException.h" />
+    <ClInclude Include="CalendarExceptions.h" />
+    <ClInclude Include="Calendars.h" />
+    <ClInclude Include="CalendarWeekDay.h" />
+    <ClInclude Include="CalendarWeekDays.h" />
+    <ClInclude Include="CalendarWorkWeek.h" />
+    <ClInclude Include="CalendarWorkWeeks.h" />
+    <ClInclude Include="clsCollectionBase.h" />
+    <ClInclude Include="clsItemBase.h" />
+    <ClInclude Include="clsXML.h" />
+    <ClInclude Include="Duration.h" />
+    <ClInclude Include="ExtendedAttribute.h" />
+    <ClInclude Include="ExtendedAttributes.h" />
+    <ClInclude Include="ExtendedAttributeValue.h" />
+    <ClInclude Include="ExtendedAttributeValueList.h" />
+    <ClInclude Include="GlobalFunctions.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="MP12.h" />
+    <ClInclude Include="MSP2007.h" />
+    <ClInclude Include="MSP2007_resource.h" />
+    <ClInclude Include="MSP2007Ctl.h" />
+    <ClInclude Include="MSP2007Ppg.h" />
+    <ClInclude Include="odl_inc.odl" />
+    <ClInclude Include="OutlineCode.h" />
+    <ClInclude Include="OutlineCodeMask.h" />
+    <ClInclude Include="OutlineCodeMasks.h" />
+    <ClInclude Include="OutlineCodes.h" />
+    <ClInclude Include="OutlineCodeValue.h" />
+    <ClInclude Include="OutlineCodeValues.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceAvailabilityPeriod.h" />
+    <ClInclude Include="ResourceAvailabilityPeriods.h" />
+    <ClInclude Include="ResourceBaseline.h" />
+    <ClInclude Include="ResourceBaseline_C.h" />
+    <ClInclude Include="ResourceExtendedAttribute.h" />
+    <ClInclude Include="ResourceExtendedAttribute_C.h" />
+    <ClInclude Include="ResourceOutlineCode.h" />
+    <ClInclude Include="ResourceOutlineCode_C.h" />
+    <ClInclude Include="ResourceRate.h" />
+    <ClInclude Include="ResourceRates.h" />
+    <ClInclude Include="Resources.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="stdafx_inc.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TaskBaseline.h" />
+    <ClInclude Include="TaskBaseline_C.h" />
+    <ClInclude Include="TaskExtendedAttribute.h" />
+    <ClInclude Include="TaskExtendedAttribute_C.h" />
+    <ClInclude Include="TaskOutlineCode.h" />
+    <ClInclude Include="TaskOutlineCode_C.h" />
+    <ClInclude Include="TaskPredecessorLink.h" />
+    <ClInclude Include="TaskPredecessorLink_C.h" />
+    <ClInclude Include="Tasks.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="TimePeriod.h" />
+    <ClInclude Include="TimePeriods.h" />
+    <ClInclude Include="TimephasedData.h" />
+    <ClInclude Include="TimephasedData_C.h" />
+    <ClInclude Include="WBSMask.h" />
+    <ClInclude Include="WBSMasks.h" />
+    <ClInclude Include="WeekDay.h" />
+    <ClInclude Include="WeekDay_C.h" />
+    <ClInclude Include="WorkingTime.h" />
+    <ClInclude Include="WorkingTimes.h" />
+    <ClInclude Include="X_Globals.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="2007_15x16.bmp" />
+    <Image Include="2007_32x32.bmp" />
+    <Image Include="2007_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

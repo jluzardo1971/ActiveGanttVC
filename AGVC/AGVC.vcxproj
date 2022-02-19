@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="SCSCustomer|Win32">
+      <Configuration>SCSCustomer</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="SCSDemo|Win32">
+      <Configuration>SCSDemo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|Win32">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{53F99D29-EDD1-41DA-92B5-7839CEF72601}</ProjectGuid>
+    <RootNamespace>AGVC</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC70.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">..\ActiveX\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">.\Bin/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">false</LinkIncremental>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">.ocx</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">.ocx</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">.ocx</TargetExt>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">
+    </CustomBuildAfterTargets>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">
+    </CustomBuildAfterTargets>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    </CustomBuildAfterTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\AGVC.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_TRIAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/AGVC.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\AGVC.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\MSXML 4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\ActiveGanttVC.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Bin/AGVC.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/AGVC.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\AGVC.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_TRIAL;_SCSDemo;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/AGVC.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\AGVC.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\MSXML 4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\ActiveGanttVC.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Bin/AGVC.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/AGVC.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">
+    <CustomBuildStep>
+      <Message>Registering ActiveX Control...</Message>
+      <Command>regsvr32 /s /c "$(TargetPath)"
+echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
+</Command>
+      <Inputs>$(TargetFileName);%(Inputs)</Inputs>
+      <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>..\ActiveX\AGVC.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>.\Bin/AGVC.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Bin/</AssemblerListingLocation>
+      <ObjectFileName>.\Bin/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Bin/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\MSXML 4.0\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>msxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\ActiveX\AGVC.ocx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\ActiveGanttVC.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Bin/AGVC.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Bin/AGVC.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ActiveGanttVC.cpp" />
+    <ClCompile Include="ActiveGanttVCCtl.cpp" />
+    <ClCompile Include="ActiveGanttVCPpg.cpp" />
+    <ClCompile Include="ActiveGanttVCWrappers.cpp" />
+    <ClCompile Include="cathelp.cpp" />
+    <ClCompile Include="clsButtonBorderStyle.cpp" />
+    <ClCompile Include="clsButtonState.cpp" />
+    <ClCompile Include="clsCell.cpp" />
+    <ClCompile Include="clsCells.cpp" />
+    <ClCompile Include="clsClientArea.cpp" />
+    <ClCompile Include="clsCollectionBase.cpp" />
+    <ClCompile Include="clsColumn.cpp" />
+    <ClCompile Include="clsColumns.cpp" />
+    <ClCompile Include="clsConfiguration.cpp" />
+    <ClCompile Include="clsCultureInfo.cpp" />
+    <ClCompile Include="clsCustomBorderStyle.cpp" />
+    <ClCompile Include="clsDrawing.cpp" />
+    <ClCompile Include="clsFont.cpp" />
+    <ClCompile Include="clsGDIGraphics.cpp" />
+    <ClCompile Include="clsGraphics.cpp" />
+    <ClCompile Include="clsGrid.cpp" />
+    <ClCompile Include="clsHorizontalScrollBar.cpp" />
+    <ClCompile Include="clsHScrollBarTemplate.cpp" />
+    <ClCompile Include="clsImage.cpp" />
+    <ClCompile Include="clsItemBase.cpp" />
+    <ClCompile Include="clsLayer.cpp" />
+    <ClCompile Include="clsLayers.cpp" />
+    <ClCompile Include="clsMath.cpp" />
+    <ClCompile Include="clsMilestoneStyle.cpp" />
+    <ClCompile Include="clsMouseKeyboardEvents.cpp" />
+    <ClCompile Include="clsNode.cpp" />
+    <ClCompile Include="clsPercentage.cpp" />
+    <ClCompile Include="clsPercentages.cpp" />
+    <ClCompile Include="clsPredecessor.cpp" />
+    <ClCompile Include="clsPredecessors.cpp" />
+    <ClCompile Include="clsPredecessorStyle.cpp" />
+    <ClCompile Include="clsPrinter.cpp" />
+    <ClCompile Include="clsProgressLine.cpp" />
+    <ClCompile Include="clsRow.cpp" />
+    <ClCompile Include="clsRows.cpp" />
+    <ClCompile Include="clsScrollBarSeparator.cpp" />
+    <ClCompile Include="clsScrollBarStyle.cpp" />
+    <ClCompile Include="clsSelectionRectangleStyle.cpp" />
+    <ClCompile Include="clsSplitter.cpp" />
+    <ClCompile Include="clsStyle.cpp" />
+    <ClCompile Include="clsStyles.cpp" />
+    <ClCompile Include="clsTask.cpp" />
+    <ClCompile Include="clsTasks.cpp" />
+    <ClCompile Include="clsTaskStyle.cpp" />
+    <ClCompile Include="clsTextBox.cpp" />
+    <ClCompile Include="clsTextFlags.cpp" />
+    <ClCompile Include="clsTickMark.cpp" />
+    <ClCompile Include="clsTickMarkArea.cpp" />
+    <ClCompile Include="clsTickMarks.cpp" />
+    <ClCompile Include="clsTier.cpp" />
+    <ClCompile Include="clsTierAppearance.cpp" />
+    <ClCompile Include="clsTierArea.cpp" />
+    <ClCompile Include="clsTierColor.cpp" />
+    <ClCompile Include="clsTierColors.cpp" />
+    <ClCompile Include="clsTierFormat.cpp" />
+    <ClCompile Include="clsTimeBlock.cpp" />
+    <ClCompile Include="clsTimeBlocks.cpp" />
+    <ClCompile Include="clsTimeLine.cpp" />
+    <ClCompile Include="clsTimeLineScrollBar.cpp" />
+    <ClCompile Include="clsToolTip.cpp" />
+    <ClCompile Include="clsTreeview.cpp" />
+    <ClCompile Include="clsVerticalScrollBar.cpp" />
+    <ClCompile Include="clsView.cpp" />
+    <ClCompile Include="clsViews.cpp" />
+    <ClCompile Include="clsVScrollBarTemplate.cpp" />
+    <ClCompile Include="clsXML.cpp" />
+    <ClCompile Include="ControlTemplateGradient.cpp" />
+    <ClCompile Include="ControlTemplateSolid.cpp" />
+    <ClCompile Include="CustomTickMarkAreaDrawEventArgs.cpp" />
+    <ClCompile Include="CustomTierDrawEventArgs.cpp" />
+    <ClCompile Include="DrawEventArgs.cpp" />
+    <ClCompile Include="ErrorEventArgs.cpp" />
+    <ClCompile Include="fAbout.cpp" />
+    <ClCompile Include="GlobalDateFunctions.cpp" />
+    <ClCompile Include="GlobalFunctions.cpp" />
+    <ClCompile Include="KeyEventArgs.cpp" />
+    <ClCompile Include="MouseEventArgs.cpp" />
+    <ClCompile Include="MouseWheelEventArgs.cpp" />
+    <ClCompile Include="NodeEventArgs.cpp" />
+    <ClCompile Include="NumericFormat.cpp" />
+    <ClCompile Include="ObjectAddedEventArgs.cpp" />
+    <ClCompile Include="ObjectSelectedEventArgs.cpp" />
+    <ClCompile Include="ObjectStateChangedEventArgs.cpp" />
+    <ClCompile Include="PagePrintEventArgs.cpp" />
+    <ClCompile Include="PredecessorDrawEventArgs.cpp" />
+    <ClCompile Include="PredecessorExceptionEventArgs.cpp" />
+    <ClCompile Include="ScrollEventArgs.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Templates.cpp" />
+    <ClCompile Include="TextEditEventArgs.cpp" />
+    <ClCompile Include="TickMarkTextDrawEventArgs.cpp" />
+    <ClCompile Include="ToolTipEventArgs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\FIXES_REGISTRY_CMD\AGVC.reg" />
+    <None Include="ActiveGanttVC.def" />
+    <None Include="4WAY02.CUR" />
+    <None Include="ActiveGantt.ico" />
+    <None Include="ActiveGanttVCCtl.bmp" />
+    <None Include="arrow.cur" />
+    <None Include="C_WAIT05.CUR" />
+    <None Include="CROSS02.CUR" />
+    <None Include="CROSS03.CUR" />
+    <None Include="cursor1.cur" />
+    <None Include="DRAGMOVE.CUR" />
+    <None Include="EW_01.CUR" />
+    <None Include="EW_08.CUR" />
+    <None Include="H_POINT.CUR" />
+    <None Include="HELP.ICO" />
+    <None Include="HO_SPLIT.CUR" />
+    <None Include="IBeam.cur" />
+    <None Include="icon.bmp" />
+    <None Include="NODROP01.CUR" />
+    <None Include="NORMAL01.CUR" />
+    <None Include="NS_01.CUR" />
+    <None Include="NS_02.CUR" />
+    <None Include="PERCENTAGE.CUR" />
+    <None Include="PREDECESSOR.CUR" />
+    <None Include="VE_SIZEB.CUR" />
+    <None Include="VE_SPLIT.CUR" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="ActiveGanttVC.odl">
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">Win32</TargetEnvironment>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">ActiveGanttVC_h.h</HeaderFileName>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">Win32</TargetEnvironment>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">ActiveGanttVC_h.h</HeaderFileName>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Win32</TargetEnvironment>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">ActiveGanttVC_h.h</HeaderFileName>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ActiveGanttVC.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='SCSCustomer|Win32'">$(OUTDIR)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='SCSDemo|Win32'">$(OUTDIR)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">$(OUTDIR)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ActiveGanttVCWrappers.h" />
+    <ClInclude Include="clsConfiguration.h" />
+    <ClInclude Include="ControlTemplateGradient.h" />
+    <ClInclude Include="ControlTemplateSolid.h" />
+    <ClInclude Include="CustomTickMarkAreaDrawEventArgs.h" />
+    <ClInclude Include="PagePrintEventArgs.h" />
+    <ClInclude Include="Templates.h" />
+    <ClInclude Include="TickMarkTextDrawEventArgs.h" />
+    <ClInclude Include="VersionInfo.h" />
+    <ClInclude Include="ActiveGanttVC.h" />
+    <ClInclude Include="ActiveGanttVCCtl.h" />
+    <ClInclude Include="ActiveGanttVCPpg.h" />
+    <ClInclude Include="cathelp.h" />
+    <ClInclude Include="clsButtonBorderStyle.h" />
+    <ClInclude Include="clsButtonState.h" />
+    <ClInclude Include="clsCell.h" />
+    <ClInclude Include="clsCells.h" />
+    <ClInclude Include="clsClientArea.h" />
+    <ClInclude Include="clsCollectionBase.h" />
+    <ClInclude Include="clsColumn.h" />
+    <ClInclude Include="clsColumns.h" />
+    <ClInclude Include="clsCultureInfo.h" />
+    <ClInclude Include="clsCustomBorderStyle.h" />
+    <ClInclude Include="clsDrawing.h" />
+    <ClInclude Include="clsFont.h" />
+    <ClInclude Include="clsGDIGraphics.h" />
+    <ClInclude Include="clsGraphics.h" />
+    <ClInclude Include="clsGrid.h" />
+    <ClInclude Include="clsHorizontalScrollBar.h" />
+    <ClInclude Include="clsHScrollBarTemplate.h" />
+    <ClInclude Include="clsImage.h" />
+    <ClInclude Include="clsItemBase.h" />
+    <ClInclude Include="clsLayer.h" />
+    <ClInclude Include="clsLayers.h" />
+    <ClInclude Include="clsMath.h" />
+    <ClInclude Include="clsMilestoneStyle.h" />
+    <ClInclude Include="clsMouseKeyboardEvents.h" />
+    <ClInclude Include="clsNode.h" />
+    <ClInclude Include="clsPercentage.h" />
+    <ClInclude Include="clsPercentages.h" />
+    <ClInclude Include="clsPredecessor.h" />
+    <ClInclude Include="clsPredecessors.h" />
+    <ClInclude Include="clsPredecessorStyle.h" />
+    <ClInclude Include="clsPrinter.h" />
+    <ClInclude Include="clsProgressLine.h" />
+    <ClInclude Include="clsRow.h" />
+    <ClInclude Include="clsRows.h" />
+    <ClInclude Include="clsScrollBarSeparator.h" />
+    <ClInclude Include="clsScrollBarStyle.h" />
+    <ClInclude Include="clsSelectionRectangleStyle.h" />
+    <ClInclude Include="clsSplitter.h" />
+    <ClInclude Include="clsStyle.h" />
+    <ClInclude Include="clsStyles.h" />
+    <ClInclude Include="clsTask.h" />
+    <ClInclude Include="clsTasks.h" />
+    <ClInclude Include="clsTaskStyle.h" />
+    <ClInclude Include="clsTextBox.h" />
+    <ClInclude Include="clsTextFlags.h" />
+    <ClInclude Include="clsTickMark.h" />
+    <ClInclude Include="clsTickMarkArea.h" />
+    <ClInclude Include="clsTickMarks.h" />
+    <ClInclude Include="clsTier.h" />
+    <ClInclude Include="clsTierAppearance.h" />
+    <ClInclude Include="clsTierArea.h" />
+    <ClInclude Include="clsTierColor.h" />
+    <ClInclude Include="clsTierColors.h" />
+    <ClInclude Include="clsTierFormat.h" />
+    <ClInclude Include="clsTimeBlock.h" />
+    <ClInclude Include="clsTimeBlocks.h" />
+    <ClInclude Include="clsTimeLine.h" />
+    <ClInclude Include="clsTimeLineScrollBar.h" />
+    <ClInclude Include="clsToolTip.h" />
+    <ClInclude Include="clsTreeview.h" />
+    <ClInclude Include="clsVerticalScrollBar.h" />
+    <ClInclude Include="clsView.h" />
+    <ClInclude Include="clsViews.h" />
+    <ClInclude Include="clsVScrollBarTemplate.h" />
+    <ClInclude Include="clsXML.h" />
+    <ClInclude Include="CustomTierDrawEventArgs.h" />
+    <ClInclude Include="DrawEventArgs.h" />
+    <ClInclude Include="ErrorEventArgs.h" />
+    <ClInclude Include="fAbout.h" />
+    <ClInclude Include="GlobalDateFunctions.h" />
+    <ClInclude Include="GlobalFunctions.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="initgdiplus.h" />
+    <ClInclude Include="KeyEventArgs.h" />
+    <ClInclude Include="MouseEventArgs.h" />
+    <ClInclude Include="MouseWheelEventArgs.h" />
+    <ClInclude Include="NodeEventArgs.h" />
+    <ClInclude Include="NumericFormat.h" />
+    <ClInclude Include="ObjectAddedEventArgs.h" />
+    <ClInclude Include="ObjectSelectedEventArgs.h" />
+    <ClInclude Include="ObjectStateChangedEventArgs.h" />
+    <ClInclude Include="PredecessorDrawEventArgs.h" />
+    <ClInclude Include="PredecessorExceptionEventArgs.h" />
+    <ClInclude Include="PrivateVars.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScrollEventArgs.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TextEditEventArgs.h" />
+    <ClInclude Include="ToolTipEventArgs.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ActiveGanttVC.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

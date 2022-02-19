@@ -1,0 +1,9 @@
+; MSP2007.def : Declares the module parameters.
+
+LIBRARY      "MSP2007.OCX"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

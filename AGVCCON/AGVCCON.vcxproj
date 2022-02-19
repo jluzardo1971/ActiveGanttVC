@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F64E389F-A561-4318-AC37-1B850EB6EBDA}</ProjectGuid>
+    <RootNamespace>AGVCCON</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ActiveGanttVCWrappers.cpp" />
+    <ClCompile Include="AGVCCON.cpp" />
+    <ClCompile Include="clsDB.cpp" />
+    <ClCompile Include="DST_ACCESS.cpp" />
+    <ClCompile Include="fCarRental.cpp" />
+    <ClCompile Include="fCarRentalBranch.cpp" />
+    <ClCompile Include="fCarRentalReservation.cpp" />
+    <ClCompile Include="fCarRentalVehicle.cpp" />
+    <ClCompile Include="fCustomDrawing.cpp" />
+    <ClCompile Include="fCustomTickMarkAreaDraw.cpp" />
+    <ClCompile Include="fCustomTickMarkTextDraw.cpp" />
+    <ClCompile Include="fDurationTasks.cpp" />
+    <ClCompile Include="fFastLoading.cpp" />
+    <ClCompile Include="fLoadXML.cpp" />
+    <ClCompile Include="fMain.cpp" />
+    <ClCompile Include="fMSProject11.cpp" />
+    <ClCompile Include="fMSProject12.cpp" />
+    <ClCompile Include="fMSProject14.cpp" />
+    <ClCompile Include="fPrintDialog.cpp" />
+    <ClCompile Include="fPrintPreview.cpp" />
+    <ClCompile Include="fRCT_DAY.cpp" />
+    <ClCompile Include="fRCT_MONTH.cpp" />
+    <ClCompile Include="fRCT_WEEK.cpp" />
+    <ClCompile Include="fRCT_YEAR.cpp" />
+    <ClCompile Include="fSortRows.cpp" />
+    <ClCompile Include="fSTL_Anakiwa_Blue.cpp" />
+    <ClCompile Include="fSTL_CR.cpp" />
+    <ClCompile Include="fSTL_MSP2003.cpp" />
+    <ClCompile Include="fSTL_MSP2007.cpp" />
+    <ClCompile Include="fSTL_MSP2010.cpp" />
+    <ClCompile Include="fTemplates.cpp" />
+    <ClCompile Include="fWBSPProperties.cpp" />
+    <ClCompile Include="fWBSProject.cpp" />
+    <ClCompile Include="fWBSProjectTaskView.cpp" />
+    <ClCompile Include="GlobalFunctions.cpp" />
+    <ClCompile Include="MSFLEXGrid.cpp" />
+    <ClCompile Include="MSP2003Wrappers.cpp" />
+    <ClCompile Include="MSP2007Wrappers.cpp" />
+    <ClCompile Include="MSP2010Wrappers.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ToolTipToolBar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ActiveGanttVCWrappers.h" />
+    <ClInclude Include="AGVCCON.h" />
+    <ClInclude Include="clsDB.h" />
+    <ClInclude Include="DST_ACCESS.h" />
+    <ClInclude Include="fCarRental.h" />
+    <ClInclude Include="fCarRentalBranch.h" />
+    <ClInclude Include="fCarRentalReservation.h" />
+    <ClInclude Include="fCarRentalVehicle.h" />
+    <ClInclude Include="fCustomDrawing.h" />
+    <ClInclude Include="fCustomTickMarkAreaDraw.h" />
+    <ClInclude Include="fCustomTickMarkTextDraw.h" />
+    <ClInclude Include="fDurationTasks.h" />
+    <ClInclude Include="fFastLoading.h" />
+    <ClInclude Include="fLoadXML.h" />
+    <ClInclude Include="fMain.h" />
+    <ClInclude Include="fMSProject11.h" />
+    <ClInclude Include="fMSProject12.h" />
+    <ClInclude Include="fMSProject14.h" />
+    <ClInclude Include="fPrintDialog.h" />
+    <ClInclude Include="fPrintPreview.h" />
+    <ClInclude Include="fRCT_DAY.h" />
+    <ClInclude Include="fRCT_MONTH.h" />
+    <ClInclude Include="fRCT_WEEK.h" />
+    <ClInclude Include="fRCT_YEAR.h" />
+    <ClInclude Include="fSortRows.h" />
+    <ClInclude Include="fSTL_Anakiwa_Blue.h" />
+    <ClInclude Include="fSTL_CR.h" />
+    <ClInclude Include="fSTL_MSP2003.h" />
+    <ClInclude Include="fSTL_MSP2007.h" />
+    <ClInclude Include="fSTL_MSP2010.h" />
+    <ClInclude Include="fTemplates.h" />
+    <ClInclude Include="fWBSPProperties.h" />
+    <ClInclude Include="fWBSProject.h" />
+    <ClInclude Include="fWBSProjectTaskView.h" />
+    <ClInclude Include="GlobalFunctions.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="MSFLEXGrid.h" />
+    <ClInclude Include="MSP2003Wrappers.h" />
+    <ClInclude Include="MSP2007Wrappers.h" />
+    <ClInclude Include="MSP2010Wrappers.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="ToolTipToolBar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ActiveGantt.bmp" />
+    <None Include="res\AGVCCON.ico" />
+    <None Include="res\AGVCCON.rc2" />
+    <None Include="res\bluefolderclosed.bmp" />
+    <None Include="res\bluefolderopen.bmp" />
+    <None Include="res\fCarRental.bmp" />
+    <None Include="res\fLoadXML.bmp" />
+    <None Include="res\fMainBanner.bmp" />
+    <None Include="res\fMSProject.bmp" />
+    <None Include="res\folderclosed.bmp" />
+    <None Include="res\folderopen.bmp" />
+    <None Include="res\fPrintPreview.bmp" />
+    <None Include="res\fPrintPreview2.bmp" />
+    <None Include="res\fTemplates.bmp" />
+    <None Include="res\fWBSProject.bmp" />
+    <None Include="res\getting_started.bmp" />
+    <None Include="res\icon-graph.bmp" />
+    <None Include="res\internet.bmp" />
+    <None Include="res\localCHMdocumentation.bmp" />
+    <None Include="res\modules.bmp" />
+    <None Include="res\onlinedocumentation.bmp" />
+    <None Include="res\projectnote.gif" />
+    <None Include="res\task.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AGVCCON.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="AGVCCON.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,1609 @@
+﻿#include "X_Globals.h"
+
+
+////////////////////////////////////////////////////////////////////////     TimephasedData
+
+	//  Primary dispatch interface for TimephasedData
+	[ uuid(9CB0ECEA-B69D-43CA-803F-F766BDD7A3B1) ]
+	dispinterface ITimephasedData
+	{
+	properties:
+		[id(1)] LONG yType;
+		[id(2)] LONG lUID;
+		[id(3)] DATE dtStart;
+		[id(4)] DATE dtFinish;
+		[id(5)] LONG yUnit;
+		[id(6)] BSTR sValue;
+		[id(7)] BSTR Key;
+	
+	methods:
+		[id(8)] BSTR GetXML(void);
+		[id(9)] void SetXML(BSTR sXML);
+		[id(10)] BOOLEAN IsNull(void); 
+		[id(11)] void Initialize(void);
+	};
+	
+	[ uuid(F8642958-EA4F-49E2-8D11-954D8AEDA5D5) ]
+	coclass TimephasedData
+	{
+		[default] dispinterface ITimephasedData;
+	};
+
+////////////////////////////////////////////////////////////////////////     TimephasedData_C
+
+	//  Primary dispatch interface for TimephasedData_C
+	[ uuid(A43ECACF-8DB9-4062-955C-924794B75258) ]
+	dispinterface ITimephasedData_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITimephasedData* Item(BSTR Index);
+		[id(0), propget] ITimephasedData* _Item(LPCTSTR Index);
+		[id(3)] ITimephasedData* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(074A1713-031B-45BB-8236-7901684E8D62) ]
+	coclass TimephasedData_C
+	{
+		[default] dispinterface ITimephasedData_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     AssignmentBaseline
+
+	//  Primary dispatch interface for AssignmentBaseline
+	[ uuid(8FEB05D7-0B8C-4463-A0C8-80E363A58FBA) ]
+	dispinterface IAssignmentBaseline
+	{
+	properties:
+		[id(1)] ITimephasedData_C* oTimephasedData_C;
+		[id(2)] BSTR sNumber;
+		[id(3)] BSTR sStart;
+		[id(4)] BSTR sFinish;
+		[id(5)] IDuration* oWork;
+		[id(6)] BSTR sCost;
+		[id(7)] FLOAT fBCWS;
+		[id(8)] FLOAT fBCWP;
+		[id(9)] BSTR Key;
+	
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+		[id(12)] BOOLEAN IsNull(void); 
+		[id(13)] void Initialize(void);
+	};
+	
+	[ uuid(50D939D1-FC1D-4D59-B586-2C78147726B6) ]
+	coclass AssignmentBaseline
+	{
+		[default] dispinterface IAssignmentBaseline;
+	};
+
+////////////////////////////////////////////////////////////////////////     AssignmentBaseline_C
+
+	//  Primary dispatch interface for AssignmentBaseline_C
+	[ uuid(02121BB1-8AE0-42B0-A36C-5DFF5BE5E68F) ]
+	dispinterface IAssignmentBaseline_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IAssignmentBaseline* Item(BSTR Index);
+		[id(0), propget] IAssignmentBaseline* _Item(LPCTSTR Index);
+		[id(3)] IAssignmentBaseline* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(A1F9A08F-A905-43EB-92E4-4DA28F488A58) ]
+	coclass AssignmentBaseline_C
+	{
+		[default] dispinterface IAssignmentBaseline_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     AssignmentExtendedAttribute
+
+	//  Primary dispatch interface for AssignmentExtendedAttribute
+	[ uuid(61ADF839-29BE-4FB3-8359-C102C74506D2) ]
+	dispinterface IAssignmentExtendedAttribute
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sFieldID;
+		[id(3)] BSTR sValue;
+		[id(4)] LONG lValueID;
+		[id(5)] LONG yDurationFormat;
+		[id(6)] BSTR Key;
+	
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BOOLEAN IsNull(void); 
+		[id(10)] void Initialize(void);
+	};
+	
+	[ uuid(D54DC6D0-EBBA-4760-8A25-D817103F8196) ]
+	coclass AssignmentExtendedAttribute
+	{
+		[default] dispinterface IAssignmentExtendedAttribute;
+	};
+
+////////////////////////////////////////////////////////////////////////     AssignmentExtendedAttribute_C
+
+	//  Primary dispatch interface for AssignmentExtendedAttribute_C
+	[ uuid(177755C1-05FC-4A15-8129-F9DB337A3651) ]
+	dispinterface IAssignmentExtendedAttribute_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IAssignmentExtendedAttribute* Item(BSTR Index);
+		[id(0), propget] IAssignmentExtendedAttribute* _Item(LPCTSTR Index);
+		[id(3)] IAssignmentExtendedAttribute* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(EA1DE564-607D-4051-95E0-CA31655A324E) ]
+	coclass AssignmentExtendedAttribute_C
+	{
+		[default] dispinterface IAssignmentExtendedAttribute_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     Assignment
+
+	//  Primary dispatch interface for Assignment
+	[ uuid(3E92AACA-346D-467B-B526-C58A5DDFAE1C) ]
+	dispinterface IAssignment
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] LONG lTaskUID;
+		[id(3)] LONG lResourceUID;
+		[id(4)] LONG lPercentWorkComplete;
+		[id(5)] DOUBLE cActualCost;
+		[id(6)] DATE dtActualFinish;
+		[id(7)] DOUBLE cActualOvertimeCost;
+		[id(8)] IDuration* oActualOvertimeWork;
+		[id(9)] DATE dtActualStart;
+		[id(10)] IDuration* oActualWork;
+		[id(11)] FLOAT fACWP;
+		[id(12)] BOOLEAN bConfirmed;
+		[id(13)] DOUBLE cCost;
+		[id(14)] LONG yCostRateTable;
+		[id(15)] FLOAT fCostVariance;
+		[id(16)] FLOAT fCV;
+		[id(17)] LONG lDelay;
+		[id(18)] DATE dtFinish;
+		[id(19)] LONG lFinishVariance;
+		[id(20)] BSTR sHyperlink;
+		[id(21)] BSTR sHyperlinkAddress;
+		[id(22)] BSTR sHyperlinkSubAddress;
+		[id(23)] FLOAT fWorkVariance;
+		[id(24)] BOOLEAN bHasFixedRateUnits;
+		[id(25)] BOOLEAN bFixedMaterial;
+		[id(26)] LONG lLevelingDelay;
+		[id(27)] LONG yLevelingDelayFormat;
+		[id(28)] BOOLEAN bLinkedFields;
+		[id(29)] BOOLEAN bMilestone;
+		[id(30)] BSTR sNotes;
+		[id(31)] BOOLEAN bOverallocated;
+		[id(32)] DOUBLE cOvertimeCost;
+		[id(33)] IDuration* oOvertimeWork;
+		[id(34)] IDuration* oRegularWork;
+		[id(35)] DOUBLE cRemainingCost;
+		[id(36)] DOUBLE cRemainingOvertimeCost;
+		[id(37)] IDuration* oRemainingOvertimeWork;
+		[id(38)] IDuration* oRemainingWork;
+		[id(39)] BOOLEAN bResponsePending;
+		[id(40)] DATE dtStart;
+		[id(41)] DATE dtStop;
+		[id(42)] DATE dtResume;
+		[id(43)] LONG lStartVariance;
+		[id(44)] FLOAT fUnits;
+		[id(45)] BOOLEAN bUpdateNeeded;
+		[id(46)] FLOAT fVAC;
+		[id(47)] IDuration* oWork;
+		[id(48)] LONG yWorkContour;
+		[id(49)] FLOAT fBCWS;
+		[id(50)] FLOAT fBCWP;
+		[id(51)] LONG yBookingType;
+		[id(52)] IDuration* oActualWorkProtected;
+		[id(53)] IDuration* oActualOvertimeWorkProtected;
+		[id(54)] DATE dtCreationDate;
+		[id(55)] IAssignmentExtendedAttribute_C* oExtendedAttribute_C;
+		[id(56)] IAssignmentBaseline_C* oBaseline_C;
+		[id(57)] ITimephasedData_C* oTimephasedData_C;
+		[id(58)] BSTR Key;
+	
+	methods:
+		[id(59)] BSTR GetXML(void);
+		[id(60)] void SetXML(BSTR sXML);
+		[id(61)] BOOLEAN IsNull(void); 
+		[id(62)] void Initialize(void);
+	};
+	
+	[ uuid(05D9C669-40C3-40F6-9C87-0C50960249ED) ]
+	coclass Assignment
+	{
+		[default] dispinterface IAssignment;
+	};
+
+////////////////////////////////////////////////////////////////////////     Assignments
+
+	//  Primary dispatch interface for Assignments
+	[ uuid(93F7F284-8C2C-4B2B-8378-D079AF423AB9) ]
+	dispinterface IAssignments
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IAssignment* Item(BSTR Index);
+		[id(0), propget] IAssignment* _Item(LPCTSTR Index);
+		[id(3)] IAssignment* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(DA8A5FC5-C355-47E2-8C0D-185D7ADBB64E) ]
+	coclass Assignments
+	{
+		[default] dispinterface IAssignments;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceRate
+
+	//  Primary dispatch interface for ResourceRate
+	[ uuid(BD6484E4-9304-4540-B42E-1BAE78F6255B) ]
+	dispinterface IResourceRate
+	{
+	properties:
+		[id(1)] DATE dtRatesFrom;
+		[id(2)] DATE dtRatesTo;
+		[id(3)] LONG yRateTable;
+		[id(4)] DOUBLE cStandardRate;
+		[id(5)] LONG yStandardRateFormat;
+		[id(6)] DOUBLE cOvertimeRate;
+		[id(7)] LONG yOvertimeRateFormat;
+		[id(8)] DOUBLE cCostPerUse;
+		[id(9)] BSTR Key;
+	
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+		[id(12)] BOOLEAN IsNull(void); 
+		[id(13)] void Initialize(void);
+	};
+	
+	[ uuid(0D9B231C-944C-418C-A087-1A072E5933D1) ]
+	coclass ResourceRate
+	{
+		[default] dispinterface IResourceRate;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceRates
+
+	//  Primary dispatch interface for ResourceRates
+	[ uuid(AD80489F-70B3-48B0-B176-9AA0BEA68966) ]
+	dispinterface IResourceRates
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResourceRate* Item(BSTR Index);
+		[id(0), propget] IResourceRate* _Item(LPCTSTR Index);
+		[id(3)] IResourceRate* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(3D34F047-4A29-4F44-AFE5-D3CBD968BE87) ]
+	coclass ResourceRates
+	{
+		[default] dispinterface IResourceRates;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceAvailabilityPeriod
+
+	//  Primary dispatch interface for ResourceAvailabilityPeriod
+	[ uuid(F9B4605B-2904-43F1-9136-E613BBB9C28A) ]
+	dispinterface IResourceAvailabilityPeriod
+	{
+	properties:
+		[id(1)] DATE dtAvailableFrom;
+		[id(2)] DATE dtAvailableTo;
+		[id(3)] FLOAT fAvailableUnits;
+		[id(4)] BSTR Key;
+	
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] BOOLEAN IsNull(void); 
+		[id(8)] void Initialize(void);
+	};
+	
+	[ uuid(4CFDFFE2-48B9-45D8-8E67-032BAFB8A4B5) ]
+	coclass ResourceAvailabilityPeriod
+	{
+		[default] dispinterface IResourceAvailabilityPeriod;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceAvailabilityPeriods
+
+	//  Primary dispatch interface for ResourceAvailabilityPeriods
+	[ uuid(6D17C8FA-96E3-48AD-AC08-D5BE0771008F) ]
+	dispinterface IResourceAvailabilityPeriods
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResourceAvailabilityPeriod* Item(BSTR Index);
+		[id(0), propget] IResourceAvailabilityPeriod* _Item(LPCTSTR Index);
+		[id(3)] IResourceAvailabilityPeriod* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(50172AEB-845C-472E-A206-5B958BF3E0C4) ]
+	coclass ResourceAvailabilityPeriods
+	{
+		[default] dispinterface IResourceAvailabilityPeriods;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceOutlineCode
+
+	//  Primary dispatch interface for ResourceOutlineCode
+	[ uuid(A42B0139-082D-4154-8184-1FE3A8607FF3) ]
+	dispinterface IResourceOutlineCode
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sFieldID;
+		[id(3)] LONG lValueID;
+		[id(4)] BSTR Key;
+	
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] BOOLEAN IsNull(void); 
+		[id(8)] void Initialize(void);
+	};
+	
+	[ uuid(7AFC2E4C-6972-4129-A82B-94AFEBA6EE3C) ]
+	coclass ResourceOutlineCode
+	{
+		[default] dispinterface IResourceOutlineCode;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceOutlineCode_C
+
+	//  Primary dispatch interface for ResourceOutlineCode_C
+	[ uuid(7E699717-38ED-4600-8CC8-6F005D24A550) ]
+	dispinterface IResourceOutlineCode_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResourceOutlineCode* Item(BSTR Index);
+		[id(0), propget] IResourceOutlineCode* _Item(LPCTSTR Index);
+		[id(3)] IResourceOutlineCode* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(34C55A84-356E-4370-9027-FCB2DD6CA17B) ]
+	coclass ResourceOutlineCode_C
+	{
+		[default] dispinterface IResourceOutlineCode_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceBaseline
+
+	//  Primary dispatch interface for ResourceBaseline
+	[ uuid(C7D57346-97E8-45BB-B8A2-5D135EB7FBB5) ]
+	dispinterface IResourceBaseline
+	{
+	properties:
+		[id(1)] LONG lNumber;
+		[id(2)] IDuration* oWork;
+		[id(3)] FLOAT fCost;
+		[id(4)] FLOAT fBCWS;
+		[id(5)] FLOAT fBCWP;
+		[id(6)] BSTR Key;
+	
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BOOLEAN IsNull(void); 
+		[id(10)] void Initialize(void);
+	};
+	
+	[ uuid(EB0C3222-55A7-4948-9667-7D6653B8944F) ]
+	coclass ResourceBaseline
+	{
+		[default] dispinterface IResourceBaseline;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceBaseline_C
+
+	//  Primary dispatch interface for ResourceBaseline_C
+	[ uuid(E89F3BDF-300A-40E9-8E0C-57E4F5418671) ]
+	dispinterface IResourceBaseline_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResourceBaseline* Item(BSTR Index);
+		[id(0), propget] IResourceBaseline* _Item(LPCTSTR Index);
+		[id(3)] IResourceBaseline* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(78716C02-9985-4D5D-828A-23EE3C43FE46) ]
+	coclass ResourceBaseline_C
+	{
+		[default] dispinterface IResourceBaseline_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceExtendedAttribute
+
+	//  Primary dispatch interface for ResourceExtendedAttribute
+	[ uuid(8AE27DC1-0878-4637-8BCD-FF29F82C36A1) ]
+	dispinterface IResourceExtendedAttribute
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sFieldID;
+		[id(3)] BSTR sValue;
+		[id(4)] LONG lValueID;
+		[id(5)] LONG yDurationFormat;
+		[id(6)] BSTR Key;
+	
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BOOLEAN IsNull(void); 
+		[id(10)] void Initialize(void);
+	};
+	
+	[ uuid(D82A4D8F-3490-4CD1-A27A-FC592111E5D1) ]
+	coclass ResourceExtendedAttribute
+	{
+		[default] dispinterface IResourceExtendedAttribute;
+	};
+
+////////////////////////////////////////////////////////////////////////     ResourceExtendedAttribute_C
+
+	//  Primary dispatch interface for ResourceExtendedAttribute_C
+	[ uuid(DF7E725E-520D-4F17-822E-F34FA09B5DD1) ]
+	dispinterface IResourceExtendedAttribute_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResourceExtendedAttribute* Item(BSTR Index);
+		[id(0), propget] IResourceExtendedAttribute* _Item(LPCTSTR Index);
+		[id(3)] IResourceExtendedAttribute* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(CCF112FC-1157-4BAC-B5E9-08B6496B5E4F) ]
+	coclass ResourceExtendedAttribute_C
+	{
+		[default] dispinterface IResourceExtendedAttribute_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     Resource
+
+	//  Primary dispatch interface for Resource
+	[ uuid(9E497F8F-7C09-425C-ABFF-2B671A8C2F3C) ]
+	dispinterface IResource
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] LONG lID;
+		[id(3)] BSTR sName;
+		[id(4)] LONG yType;
+		[id(5)] BOOLEAN bIsNull;
+		[id(6)] BSTR sInitials;
+		[id(7)] BSTR sPhonetics;
+		[id(8)] BSTR sNTAccount;
+		[id(9)] BSTR sMaterialLabel;
+		[id(10)] BSTR sCode;
+		[id(11)] BSTR sGroup;
+		[id(12)] LONG yWorkGroup;
+		[id(13)] BSTR sEmailAddress;
+		[id(14)] BSTR sHyperlink;
+		[id(15)] BSTR sHyperlinkAddress;
+		[id(16)] BSTR sHyperlinkSubAddress;
+		[id(17)] FLOAT fMaxUnits;
+		[id(18)] FLOAT fPeakUnits;
+		[id(19)] BOOLEAN bOverAllocated;
+		[id(20)] DATE dtAvailableFrom;
+		[id(21)] DATE dtAvailableTo;
+		[id(22)] DATE dtStart;
+		[id(23)] DATE dtFinish;
+		[id(24)] BOOLEAN bCanLevel;
+		[id(25)] LONG yAccrueAt;
+		[id(26)] IDuration* oWork;
+		[id(27)] IDuration* oRegularWork;
+		[id(28)] IDuration* oOvertimeWork;
+		[id(29)] IDuration* oActualWork;
+		[id(30)] IDuration* oRemainingWork;
+		[id(31)] IDuration* oActualOvertimeWork;
+		[id(32)] IDuration* oRemainingOvertimeWork;
+		[id(33)] LONG lPercentWorkComplete;
+		[id(34)] DOUBLE cStandardRate;
+		[id(35)] LONG yStandardRateFormat;
+		[id(36)] DOUBLE cCost;
+		[id(37)] DOUBLE cOvertimeRate;
+		[id(38)] LONG yOvertimeRateFormat;
+		[id(39)] DOUBLE cOvertimeCost;
+		[id(40)] DOUBLE cCostPerUse;
+		[id(41)] DOUBLE cActualCost;
+		[id(42)] DOUBLE cActualOvertimeCost;
+		[id(43)] DOUBLE cRemainingCost;
+		[id(44)] DOUBLE cRemainingOvertimeCost;
+		[id(45)] FLOAT fWorkVariance;
+		[id(46)] FLOAT fCostVariance;
+		[id(47)] FLOAT fSV;
+		[id(48)] FLOAT fCV;
+		[id(49)] FLOAT fACWP;
+		[id(50)] LONG lCalendarUID;
+		[id(51)] BSTR sNotes;
+		[id(52)] FLOAT fBCWS;
+		[id(53)] FLOAT fBCWP;
+		[id(54)] BOOLEAN bIsGeneric;
+		[id(55)] BOOLEAN bIsInactive;
+		[id(56)] BOOLEAN bIsEnterprise;
+		[id(57)] LONG yBookingType;
+		[id(58)] IDuration* oActualWorkProtected;
+		[id(59)] IDuration* oActualOvertimeWorkProtected;
+		[id(60)] BSTR sActiveDirectoryGUID;
+		[id(61)] DATE dtCreationDate;
+		[id(62)] IResourceExtendedAttribute_C* oExtendedAttribute_C;
+		[id(63)] IResourceBaseline_C* oBaseline_C;
+		[id(64)] IResourceOutlineCode_C* oOutlineCode_C;
+		[id(65)] IResourceAvailabilityPeriods* oAvailabilityPeriods;
+		[id(66)] IResourceRates* oRates;
+		[id(67)] ITimephasedData_C* oTimephasedData_C;
+		[id(68)] BSTR Key;
+	
+	methods:
+		[id(69)] BSTR GetXML(void);
+		[id(70)] void SetXML(BSTR sXML);
+		[id(71)] BOOLEAN IsNull(void); 
+		[id(72)] void Initialize(void);
+	};
+	
+	[ uuid(C7973CD3-B77C-4B52-B13F-AE39984AB099) ]
+	coclass Resource
+	{
+		[default] dispinterface IResource;
+	};
+
+////////////////////////////////////////////////////////////////////////     Resources
+
+	//  Primary dispatch interface for Resources
+	[ uuid(36108931-0225-4F3C-800F-071036D899DE) ]
+	dispinterface IResources
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IResource* Item(BSTR Index);
+		[id(0), propget] IResource* _Item(LPCTSTR Index);
+		[id(3)] IResource* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(E20FD510-6F55-4456-94F2-3B9319B09D05) ]
+	coclass Resources
+	{
+		[default] dispinterface IResources;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskOutlineCode
+
+	//  Primary dispatch interface for TaskOutlineCode
+	[ uuid(475C3036-316E-47B9-AA71-3FA45FB1A9DB) ]
+	dispinterface ITaskOutlineCode
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sFieldID;
+		[id(3)] LONG lValueID;
+		[id(4)] BSTR Key;
+	
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] BOOLEAN IsNull(void); 
+		[id(8)] void Initialize(void);
+	};
+	
+	[ uuid(0F4DD562-6E32-4E4C-A716-CA05E3539591) ]
+	coclass TaskOutlineCode
+	{
+		[default] dispinterface ITaskOutlineCode;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskOutlineCode_C
+
+	//  Primary dispatch interface for TaskOutlineCode_C
+	[ uuid(7AC8DCAC-BA3D-49E4-911A-DB7935C0E96B) ]
+	dispinterface ITaskOutlineCode_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITaskOutlineCode* Item(BSTR Index);
+		[id(0), propget] ITaskOutlineCode* _Item(LPCTSTR Index);
+		[id(3)] ITaskOutlineCode* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(D0CA116C-C30D-4628-AA5F-CBA22A8A1697) ]
+	coclass TaskOutlineCode_C
+	{
+		[default] dispinterface ITaskOutlineCode_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskBaseline
+
+	//  Primary dispatch interface for TaskBaseline
+	[ uuid(FB35FE98-95D2-414C-B4DD-FD13CB2397BD) ]
+	dispinterface ITaskBaseline
+	{
+	properties:
+		[id(1)] ITimephasedData_C* oTimephasedData_C;
+		[id(2)] LONG lNumber;
+		[id(3)] BOOLEAN bInterim;
+		[id(4)] DATE dtStart;
+		[id(5)] DATE dtFinish;
+		[id(6)] IDuration* oDuration;
+		[id(7)] LONG yDurationFormat;
+		[id(8)] BOOLEAN bEstimatedDuration;
+		[id(9)] IDuration* oWork;
+		[id(10)] DOUBLE cCost;
+		[id(11)] FLOAT fBCWS;
+		[id(12)] FLOAT fBCWP;
+		[id(13)] BSTR Key;
+	
+	methods:
+		[id(14)] BSTR GetXML(void);
+		[id(15)] void SetXML(BSTR sXML);
+		[id(16)] BOOLEAN IsNull(void); 
+		[id(17)] void Initialize(void);
+	};
+	
+	[ uuid(DB8ACF1A-21E3-4B5A-9270-6F5DE399D412) ]
+	coclass TaskBaseline
+	{
+		[default] dispinterface ITaskBaseline;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskBaseline_C
+
+	//  Primary dispatch interface for TaskBaseline_C
+	[ uuid(F525A3F4-72A2-4BE7-97F0-D29BC80163A8) ]
+	dispinterface ITaskBaseline_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITaskBaseline* Item(BSTR Index);
+		[id(0), propget] ITaskBaseline* _Item(LPCTSTR Index);
+		[id(3)] ITaskBaseline* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(E8AF8B12-71BB-46D1-89AB-7E39D8DA2542) ]
+	coclass TaskBaseline_C
+	{
+		[default] dispinterface ITaskBaseline_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskExtendedAttribute
+
+	//  Primary dispatch interface for TaskExtendedAttribute
+	[ uuid(FBF04692-829E-4BC8-ABB2-8BCA750C00AA) ]
+	dispinterface ITaskExtendedAttribute
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sFieldID;
+		[id(3)] BSTR sValue;
+		[id(4)] LONG lValueID;
+		[id(5)] LONG yDurationFormat;
+		[id(6)] BSTR Key;
+	
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BOOLEAN IsNull(void); 
+		[id(10)] void Initialize(void);
+	};
+	
+	[ uuid(13338FBE-7F80-4FD6-BFFD-4FB07E30E124) ]
+	coclass TaskExtendedAttribute
+	{
+		[default] dispinterface ITaskExtendedAttribute;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskExtendedAttribute_C
+
+	//  Primary dispatch interface for TaskExtendedAttribute_C
+	[ uuid(22E96724-C3DA-4191-9D90-0912B3857BF8) ]
+	dispinterface ITaskExtendedAttribute_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITaskExtendedAttribute* Item(BSTR Index);
+		[id(0), propget] ITaskExtendedAttribute* _Item(LPCTSTR Index);
+		[id(3)] ITaskExtendedAttribute* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(652764CE-047D-4C41-BB7A-534653A90669) ]
+	coclass TaskExtendedAttribute_C
+	{
+		[default] dispinterface ITaskExtendedAttribute_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskPredecessorLink
+
+	//  Primary dispatch interface for TaskPredecessorLink
+	[ uuid(7C741995-F9DC-433E-8BEB-B53FED9CF5CA) ]
+	dispinterface ITaskPredecessorLink
+	{
+	properties:
+		[id(1)] LONG lPredecessorUID;
+		[id(2)] LONG yType;
+		[id(3)] BOOLEAN bCrossProject;
+		[id(4)] BSTR sCrossProjectName;
+		[id(5)] LONG lLinkLag;
+		[id(6)] LONG yLagFormat;
+		[id(7)] BSTR Key;
+	
+	methods:
+		[id(8)] BSTR GetXML(void);
+		[id(9)] void SetXML(BSTR sXML);
+		[id(10)] BOOLEAN IsNull(void); 
+		[id(11)] void Initialize(void);
+	};
+	
+	[ uuid(FB9ADE92-B145-48B4-ACAF-FB4906B592CB) ]
+	coclass TaskPredecessorLink
+	{
+		[default] dispinterface ITaskPredecessorLink;
+	};
+
+////////////////////////////////////////////////////////////////////////     TaskPredecessorLink_C
+
+	//  Primary dispatch interface for TaskPredecessorLink_C
+	[ uuid(E599C496-9146-49B4-BC82-ED4ADD329BD5) ]
+	dispinterface ITaskPredecessorLink_C
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITaskPredecessorLink* Item(BSTR Index);
+		[id(0), propget] ITaskPredecessorLink* _Item(LPCTSTR Index);
+		[id(3)] ITaskPredecessorLink* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(4075D883-0964-4BD1-82FF-E7D47F9B6D3B) ]
+	coclass TaskPredecessorLink_C
+	{
+		[default] dispinterface ITaskPredecessorLink_C;
+	};
+
+////////////////////////////////////////////////////////////////////////     Task
+
+	//  Primary dispatch interface for Task
+	[ uuid(C535E2D1-62BA-4A19-8C31-1F9464F46D1B) ]
+	dispinterface ITask
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] LONG lID;
+		[id(3)] BSTR sName;
+		[id(4)] LONG yType;
+		[id(5)] BOOLEAN bIsNull;
+		[id(6)] DATE dtCreateDate;
+		[id(7)] BSTR sContact;
+		[id(8)] BSTR sWBS;
+		[id(9)] BSTR sWBSLevel;
+		[id(10)] BSTR sOutlineNumber;
+		[id(11)] LONG lOutlineLevel;
+		[id(12)] LONG lPriority;
+		[id(13)] DATE dtStart;
+		[id(14)] DATE dtFinish;
+		[id(15)] IDuration* oDuration;
+		[id(16)] LONG yDurationFormat;
+		[id(17)] IDuration* oWork;
+		[id(18)] DATE dtStop;
+		[id(19)] DATE dtResume;
+		[id(20)] BOOLEAN bResumeValid;
+		[id(21)] BOOLEAN bEffortDriven;
+		[id(22)] BOOLEAN bRecurring;
+		[id(23)] BOOLEAN bOverAllocated;
+		[id(24)] BOOLEAN bEstimated;
+		[id(25)] BOOLEAN bMilestone;
+		[id(26)] BOOLEAN bSummary;
+		[id(27)] BOOLEAN bCritical;
+		[id(28)] BOOLEAN bIsSubproject;
+		[id(29)] BOOLEAN bIsSubprojectReadOnly;
+		[id(30)] BSTR sSubprojectName;
+		[id(31)] BOOLEAN bExternalTask;
+		[id(32)] BSTR sExternalTaskProject;
+		[id(33)] DATE dtEarlyStart;
+		[id(34)] DATE dtEarlyFinish;
+		[id(35)] DATE dtLateStart;
+		[id(36)] DATE dtLateFinish;
+		[id(37)] LONG lStartVariance;
+		[id(38)] LONG lFinishVariance;
+		[id(39)] FLOAT fWorkVariance;
+		[id(40)] LONG lFreeSlack;
+		[id(41)] LONG lTotalSlack;
+		[id(42)] FLOAT fFixedCost;
+		[id(43)] LONG yFixedCostAccrual;
+		[id(44)] LONG lPercentComplete;
+		[id(45)] LONG lPercentWorkComplete;
+		[id(46)] DOUBLE cCost;
+		[id(47)] DOUBLE cOvertimeCost;
+		[id(48)] IDuration* oOvertimeWork;
+		[id(49)] DATE dtActualStart;
+		[id(50)] DATE dtActualFinish;
+		[id(51)] IDuration* oActualDuration;
+		[id(52)] DOUBLE cActualCost;
+		[id(53)] DOUBLE cActualOvertimeCost;
+		[id(54)] IDuration* oActualWork;
+		[id(55)] IDuration* oActualOvertimeWork;
+		[id(56)] IDuration* oRegularWork;
+		[id(57)] IDuration* oRemainingDuration;
+		[id(58)] DOUBLE cRemainingCost;
+		[id(59)] IDuration* oRemainingWork;
+		[id(60)] DOUBLE cRemainingOvertimeCost;
+		[id(61)] IDuration* oRemainingOvertimeWork;
+		[id(62)] FLOAT fACWP;
+		[id(63)] FLOAT fCV;
+		[id(64)] LONG yConstraintType;
+		[id(65)] LONG lCalendarUID;
+		[id(66)] DATE dtConstraintDate;
+		[id(67)] DATE dtDeadline;
+		[id(68)] BOOLEAN bLevelAssignments;
+		[id(69)] BOOLEAN bLevelingCanSplit;
+		[id(70)] LONG lLevelingDelay;
+		[id(71)] LONG yLevelingDelayFormat;
+		[id(72)] DATE dtPreLeveledStart;
+		[id(73)] DATE dtPreLeveledFinish;
+		[id(74)] BSTR sHyperlink;
+		[id(75)] BSTR sHyperlinkAddress;
+		[id(76)] BSTR sHyperlinkSubAddress;
+		[id(77)] BOOLEAN bIgnoreResourceCalendar;
+		[id(78)] BSTR sNotes;
+		[id(79)] BOOLEAN bHideBar;
+		[id(80)] BOOLEAN bRollup;
+		[id(81)] FLOAT fBCWS;
+		[id(82)] FLOAT fBCWP;
+		[id(83)] LONG lPhysicalPercentComplete;
+		[id(84)] LONG yEarnedValueMethod;
+		[id(85)] ITaskPredecessorLink_C* oPredecessorLink_C;
+		[id(86)] IDuration* oActualWorkProtected;
+		[id(87)] IDuration* oActualOvertimeWorkProtected;
+		[id(88)] ITaskExtendedAttribute_C* oExtendedAttribute_C;
+		[id(89)] ITaskBaseline_C* oBaseline_C;
+		[id(90)] ITaskOutlineCode_C* oOutlineCode_C;
+		[id(91)] ITimephasedData_C* oTimephasedData_C;
+		[id(92)] BSTR Key;
+	
+	methods:
+		[id(93)] BSTR GetXML(void);
+		[id(94)] void SetXML(BSTR sXML);
+		[id(95)] BOOLEAN IsNull(void); 
+		[id(96)] void Initialize(void);
+	};
+	
+	[ uuid(39689AC8-E973-46C1-BA03-9965B5FBDC6F) ]
+	coclass Task
+	{
+		[default] dispinterface ITask;
+	};
+
+////////////////////////////////////////////////////////////////////////     Tasks
+
+	//  Primary dispatch interface for Tasks
+	[ uuid(30671723-EABF-4C04-98E0-8A3F7D354D10) ]
+	dispinterface ITasks
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITask* Item(BSTR Index);
+		[id(0), propget] ITask* _Item(LPCTSTR Index);
+		[id(3)] ITask* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(C74BA3FB-83E9-4EFB-B6B8-BD012F80EC5F) ]
+	coclass Tasks
+	{
+		[default] dispinterface ITasks;
+	};
+
+////////////////////////////////////////////////////////////////////////     WorkingTime
+
+	//  Primary dispatch interface for WorkingTime
+	[ uuid(1F25A838-1764-42B4-9621-FAAE717C120E) ]
+	dispinterface IWorkingTime
+	{
+	properties:
+		[id(1)] ITime* oFromTime;
+		[id(2)] ITime* oToTime;
+		[id(3)] BSTR Key;
+	
+	methods:
+		[id(4)] BSTR GetXML(void);
+		[id(5)] void SetXML(BSTR sXML);
+		[id(6)] BOOLEAN IsNull(void); 
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(A2336F7B-99A1-4610-BF8D-EF0C820E0195) ]
+	coclass WorkingTime
+	{
+		[default] dispinterface IWorkingTime;
+	};
+
+////////////////////////////////////////////////////////////////////////     WorkingTimes
+
+	//  Primary dispatch interface for WorkingTimes
+	[ uuid(6B91250E-48D5-4FC5-AC78-01AF9D147968) ]
+	dispinterface IWorkingTimes
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IWorkingTime* Item(BSTR Index);
+		[id(0), propget] IWorkingTime* _Item(LPCTSTR Index);
+		[id(3)] IWorkingTime* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(E4B056B3-0CE4-4E1C-91F8-B15CEB3684CE) ]
+	coclass WorkingTimes
+	{
+		[default] dispinterface IWorkingTimes;
+	};
+
+////////////////////////////////////////////////////////////////////////     TimePeriod
+
+	//  Primary dispatch interface for TimePeriod
+	[ uuid(93D8145F-03F0-40F6-B195-5714E00B711A) ]
+	dispinterface ITimePeriod
+	{
+	properties:
+		[id(1)] DATE dtFromDate;
+		[id(2)] DATE dtToDate;
+		[id(3)] BSTR Key;
+	
+	methods:
+		[id(4)] BSTR GetXML(void);
+		[id(5)] void SetXML(BSTR sXML);
+		[id(6)] BOOLEAN IsNull(void); 
+		[id(7)] void Initialize(void);
+	};
+	
+	[ uuid(ED9B4A3F-5C52-4AA2-A4D5-9AC3C67677F5) ]
+	coclass TimePeriod
+	{
+		[default] dispinterface ITimePeriod;
+	};
+
+////////////////////////////////////////////////////////////////////////     TimePeriods
+
+	//  Primary dispatch interface for TimePeriods
+	[ uuid(AFDB2FF4-23C8-4D08-80BC-661F81E71F27) ]
+	dispinterface ITimePeriods
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ITimePeriod* Item(BSTR Index);
+		[id(0), propget] ITimePeriod* _Item(LPCTSTR Index);
+		[id(3)] ITimePeriod* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(E54AD361-76A2-4399-8CAB-13AC0E9E2309) ]
+	coclass TimePeriods
+	{
+		[default] dispinterface ITimePeriods;
+	};
+
+////////////////////////////////////////////////////////////////////////     WeekDay
+
+	//  Primary dispatch interface for WeekDay
+	[ uuid(5ACB2190-665B-4A0B-8E8D-F1ED438F5A46) ]
+	dispinterface IWeekDay
+	{
+	properties:
+		[id(1)] LONG yDayType;
+		[id(2)] BOOLEAN bDayWorking;
+		[id(3)] ITimePeriod* oTimePeriod;
+		[id(4)] IWorkingTimes* oWorkingTimes;
+		[id(5)] BSTR Key;
+	
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] BOOLEAN IsNull(void); 
+		[id(9)] void Initialize(void);
+	};
+	
+	[ uuid(2AACA94C-4442-42B3-9F5F-17C643A0D15D) ]
+	coclass WeekDay
+	{
+		[default] dispinterface IWeekDay;
+	};
+
+////////////////////////////////////////////////////////////////////////     WeekDays
+
+	//  Primary dispatch interface for WeekDays
+	[ uuid(616765DA-548B-487B-8234-CDE87540BF9E) ]
+	dispinterface IWeekDays
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IWeekDay* Item(BSTR Index);
+		[id(0), propget] IWeekDay* _Item(LPCTSTR Index);
+		[id(3)] IWeekDay* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(1E6127AB-FEF9-423C-9A41-7BD408EACEE1) ]
+	coclass WeekDays
+	{
+		[default] dispinterface IWeekDays;
+	};
+
+////////////////////////////////////////////////////////////////////////     Calendar
+
+	//  Primary dispatch interface for Calendar
+	[ uuid(5E3031DD-ADDB-45AF-9C6E-6E1F2FBC11C5) ]
+	dispinterface ICalendar
+	{
+	properties:
+		[id(1)] LONG lUID;
+		[id(2)] BSTR sName;
+		[id(3)] BOOLEAN bIsBaseCalendar;
+		[id(4)] LONG lBaseCalendarUID;
+		[id(5)] IWeekDays* oWeekDays;
+		[id(6)] BSTR Key;
+	
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BOOLEAN IsNull(void); 
+		[id(10)] void Initialize(void);
+	};
+	
+	[ uuid(90C501D0-9181-48A2-98E0-748B90C7A37E) ]
+	coclass Calendar
+	{
+		[default] dispinterface ICalendar;
+	};
+
+////////////////////////////////////////////////////////////////////////     Calendars
+
+	//  Primary dispatch interface for Calendars
+	[ uuid(A4B5D6CB-C08F-4790-BB6A-BAB695DEC2DE) ]
+	dispinterface ICalendars
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] ICalendar* Item(BSTR Index);
+		[id(0), propget] ICalendar* _Item(LPCTSTR Index);
+		[id(3)] ICalendar* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(6DD462CA-316B-41FC-92E3-71770074687C) ]
+	coclass Calendars
+	{
+		[default] dispinterface ICalendars;
+	};
+
+////////////////////////////////////////////////////////////////////////     ExtendedAttributeValue
+
+	//  Primary dispatch interface for ExtendedAttributeValue
+	[ uuid(29C85DB0-FAAF-4F4C-A9DF-97E0D1DEA460) ]
+	dispinterface IExtendedAttributeValue
+	{
+	properties:
+		[id(1)] LONG lID;
+		[id(2)] BSTR sValue;
+		[id(3)] BSTR sDescription;
+		[id(4)] BSTR Key;
+	
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] BOOLEAN IsNull(void); 
+		[id(8)] void Initialize(void);
+	};
+	
+	[ uuid(46616062-AF7C-4D4B-8BD0-D50DC52F1F13) ]
+	coclass ExtendedAttributeValue
+	{
+		[default] dispinterface IExtendedAttributeValue;
+	};
+
+////////////////////////////////////////////////////////////////////////     ExtendedAttributeValueList
+
+	//  Primary dispatch interface for ExtendedAttributeValueList
+	[ uuid(42107254-2F30-4BA7-8422-5AFE8AAE410B) ]
+	dispinterface IExtendedAttributeValueList
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IExtendedAttributeValue* Item(BSTR Index);
+		[id(0), propget] IExtendedAttributeValue* _Item(LPCTSTR Index);
+		[id(3)] IExtendedAttributeValue* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(FA214CD6-91B3-412D-B664-FDBFF97121F6) ]
+	coclass ExtendedAttributeValueList
+	{
+		[default] dispinterface IExtendedAttributeValueList;
+	};
+
+////////////////////////////////////////////////////////////////////////     ExtendedAttribute
+
+	//  Primary dispatch interface for ExtendedAttribute
+	[ uuid(7C3CD3A9-D622-497A-BE35-0D719A709552) ]
+	dispinterface IExtendedAttribute
+	{
+	properties:
+		[id(1)] BSTR sFieldID;
+		[id(2)] BSTR sFieldName;
+		[id(3)] BSTR sAlias;
+		[id(4)] BSTR sPhoneticAlias;
+		[id(5)] LONG yRollupType;
+		[id(6)] LONG yCalculationType;
+		[id(7)] BSTR sFormula;
+		[id(8)] BOOLEAN bRestrictValues;
+		[id(9)] LONG yValuelistSortOrder;
+		[id(10)] BOOLEAN bAppendNewValues;
+		[id(11)] BSTR sDefault;
+		[id(12)] IExtendedAttributeValueList* oValueList;
+		[id(13)] BSTR Key;
+	
+	methods:
+		[id(14)] BSTR GetXML(void);
+		[id(15)] void SetXML(BSTR sXML);
+		[id(16)] BOOLEAN IsNull(void); 
+		[id(17)] void Initialize(void);
+	};
+	
+	[ uuid(ADA02125-DCF9-4D15-999B-C166B27D1D21) ]
+	coclass ExtendedAttribute
+	{
+		[default] dispinterface IExtendedAttribute;
+	};
+
+////////////////////////////////////////////////////////////////////////     ExtendedAttributes
+
+	//  Primary dispatch interface for ExtendedAttributes
+	[ uuid(5658C6C8-83D9-4AA9-BF38-3EC5AAE73ADB) ]
+	dispinterface IExtendedAttributes
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IExtendedAttribute* Item(BSTR Index);
+		[id(0), propget] IExtendedAttribute* _Item(LPCTSTR Index);
+		[id(3)] IExtendedAttribute* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(364E9CD8-DB27-469D-8616-C60DBD08F221) ]
+	coclass ExtendedAttributes
+	{
+		[default] dispinterface IExtendedAttributes;
+	};
+
+////////////////////////////////////////////////////////////////////////     WBSMask
+
+	//  Primary dispatch interface for WBSMask
+	[ uuid(0603FA18-8390-4BA9-B557-A55ACAC85697) ]
+	dispinterface IWBSMask
+	{
+	properties:
+		[id(1)] LONG lLevel;
+		[id(2)] LONG yType;
+		[id(3)] BSTR sLength;
+		[id(4)] BSTR sSeparator;
+		[id(5)] BSTR Key;
+	
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] BOOLEAN IsNull(void); 
+		[id(9)] void Initialize(void);
+	};
+	
+	[ uuid(5A495757-F9CC-446B-B793-820D9702F330) ]
+	coclass WBSMask
+	{
+		[default] dispinterface IWBSMask;
+	};
+
+////////////////////////////////////////////////////////////////////////     WBSMasks
+
+	//  Primary dispatch interface for WBSMasks
+	[ uuid(2FDCAA1D-13AB-4684-920E-7D92D5334A9D) ]
+	dispinterface IWBSMasks
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IWBSMask* Item(BSTR Index);
+		[id(0), propget] IWBSMask* _Item(LPCTSTR Index);
+		[id(3)] IWBSMask* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(2BD579A8-7FE3-4D26-879F-A762E6531B20) ]
+	coclass WBSMasks
+	{
+		[default] dispinterface IWBSMasks;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCodeMask
+
+	//  Primary dispatch interface for OutlineCodeMask
+	[ uuid(6FDBFE02-E340-4A76-A49B-E75E69486582) ]
+	dispinterface IOutlineCodeMask
+	{
+	properties:
+		[id(1)] LONG lLevel;
+		[id(2)] LONG yType;
+		[id(3)] LONG lLength;
+		[id(4)] BSTR sSeparator;
+		[id(5)] BSTR Key;
+	
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] BOOLEAN IsNull(void); 
+		[id(9)] void Initialize(void);
+	};
+	
+	[ uuid(13A25C0C-7773-40FE-89BB-93387BCD14E7) ]
+	coclass OutlineCodeMask
+	{
+		[default] dispinterface IOutlineCodeMask;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCodeMasks
+
+	//  Primary dispatch interface for OutlineCodeMasks
+	[ uuid(40F40505-1E7B-4633-9EE4-BC777DA67DC7) ]
+	dispinterface IOutlineCodeMasks
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IOutlineCodeMask* Item(BSTR Index);
+		[id(0), propget] IOutlineCodeMask* _Item(LPCTSTR Index);
+		[id(3)] IOutlineCodeMask* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(7F633746-A056-41DD-BE06-A703AA7CA607) ]
+	coclass OutlineCodeMasks
+	{
+		[default] dispinterface IOutlineCodeMasks;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCodeValue
+
+	//  Primary dispatch interface for OutlineCodeValue
+	[ uuid(A5F3C819-A3B5-47CA-818F-780C357EEA88) ]
+	dispinterface IOutlineCodeValue
+	{
+	properties:
+		[id(1)] LONG lValueID;
+		[id(2)] LONG lParentValueID;
+		[id(3)] BSTR sValue;
+		[id(4)] BSTR sDescription;
+		[id(5)] BSTR Key;
+	
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] BOOLEAN IsNull(void); 
+		[id(9)] void Initialize(void);
+	};
+	
+	[ uuid(1C8397F3-93F4-48AA-A28D-CC9262693B74) ]
+	coclass OutlineCodeValue
+	{
+		[default] dispinterface IOutlineCodeValue;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCodeValues
+
+	//  Primary dispatch interface for OutlineCodeValues
+	[ uuid(BB6FF4C3-0627-4AF9-95AE-5FEFD8897205) ]
+	dispinterface IOutlineCodeValues
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IOutlineCodeValue* Item(BSTR Index);
+		[id(0), propget] IOutlineCodeValue* _Item(LPCTSTR Index);
+		[id(3)] IOutlineCodeValue* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(68FB69F0-72CC-48A8-9CA7-C73C80CDC634) ]
+	coclass OutlineCodeValues
+	{
+		[default] dispinterface IOutlineCodeValues;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCode
+
+	//  Primary dispatch interface for OutlineCode
+	[ uuid(58F926AC-76C9-4064-A3BE-344658862201) ]
+	dispinterface IOutlineCode
+	{
+	properties:
+		[id(1)] BSTR sFieldID;
+		[id(2)] BSTR sFieldName;
+		[id(3)] BSTR sAlias;
+		[id(4)] BSTR sPhoneticAlias;
+		[id(5)] IOutlineCodeValues* oValues;
+		[id(6)] BOOLEAN bEnterprise;
+		[id(7)] LONG lEnterpriseOutlineCodeAlias;
+		[id(8)] BOOLEAN bResourceSubstitutionEnabled;
+		[id(9)] BOOLEAN bLeafOnly;
+		[id(10)] BOOLEAN bAllLevelsRequired;
+		[id(11)] BOOLEAN bOnlyTableValuesAllowed;
+		[id(12)] IOutlineCodeMasks* oMasks;
+		[id(13)] BSTR Key;
+	
+	methods:
+		[id(14)] BSTR GetXML(void);
+		[id(15)] void SetXML(BSTR sXML);
+		[id(16)] BOOLEAN IsNull(void); 
+		[id(17)] void Initialize(void);
+	};
+	
+	[ uuid(DEA5D074-702D-4CA3-B550-4A40DACB90E1) ]
+	coclass OutlineCode
+	{
+		[default] dispinterface IOutlineCode;
+	};
+
+////////////////////////////////////////////////////////////////////////     OutlineCodes
+
+	//  Primary dispatch interface for OutlineCodes
+	[ uuid(F64748F5-7C89-41D7-9B05-8A0ACAC85D88) ]
+	dispinterface IOutlineCodes
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IOutlineCode* Item(BSTR Index);
+		[id(0), propget] IOutlineCode* _Item(LPCTSTR Index);
+		[id(3)] IOutlineCode* Add();
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BOOLEAN IsNull(void);
+		[id(7)] void Initialize(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] BSTR GetXML(void);
+	};
+	
+	[ uuid(2377E9AF-3DE0-4D84-90FB-27C2A68931EC) ]
+	coclass OutlineCodes
+	{
+		[default] dispinterface IOutlineCodes;
+	};
+
+////////////////////////////////////////////////////////////////////////     MP11
+
+	//  Primary dispatch interface for MP11
+	[ uuid(8E1CC4CF-6C07-4E5D-87B3-8F946049E839) ]
+	dispinterface IMP11
+	{
+	properties:
+		[id(1)] BSTR sUID;
+		[id(2)] BSTR sName;
+		[id(3)] BSTR sTitle;
+		[id(4)] BSTR sSubject;
+		[id(5)] BSTR sCategory;
+		[id(6)] BSTR sCompany;
+		[id(7)] BSTR sManager;
+		[id(8)] BSTR sAuthor;
+		[id(9)] DATE dtCreationDate;
+		[id(10)] LONG lRevision;
+		[id(11)] DATE dtLastSaved;
+		[id(12)] BOOLEAN bScheduleFromStart;
+		[id(13)] DATE dtStartDate;
+		[id(14)] DATE dtFinishDate;
+		[id(15)] LONG yFYStartDate;
+		[id(16)] LONG lCriticalSlackLimit;
+		[id(17)] LONG lCurrencyDigits;
+		[id(18)] BSTR sCurrencySymbol;
+		[id(19)] LONG yCurrencySymbolPosition;
+		[id(20)] LONG lCalendarUID;
+		[id(21)] ITime* oDefaultStartTime;
+		[id(22)] ITime* oDefaultFinishTime;
+		[id(23)] LONG lMinutesPerDay;
+		[id(24)] LONG lMinutesPerWeek;
+		[id(25)] LONG lDaysPerMonth;
+		[id(26)] LONG yDefaultTaskType;
+		[id(27)] LONG yDefaultFixedCostAccrual;
+		[id(28)] FLOAT fDefaultStandardRate;
+		[id(29)] FLOAT fDefaultOvertimeRate;
+		[id(30)] LONG yDurationFormat;
+		[id(31)] LONG yWorkFormat;
+		[id(32)] BOOLEAN bEditableActualCosts;
+		[id(33)] BOOLEAN bHonorConstraints;
+		[id(34)] LONG yEarnedValueMethod;
+		[id(35)] BOOLEAN bInsertedProjectsLikeSummary;
+		[id(36)] BOOLEAN bMultipleCriticalPaths;
+		[id(37)] BOOLEAN bNewTasksEffortDriven;
+		[id(38)] BOOLEAN bNewTasksEstimated;
+		[id(39)] BOOLEAN bSplitsInProgressTasks;
+		[id(40)] BOOLEAN bSpreadActualCost;
+		[id(41)] BOOLEAN bSpreadPercentComplete;
+		[id(42)] BOOLEAN bTaskUpdatesResource;
+		[id(43)] BOOLEAN bFiscalYearStart;
+		[id(44)] LONG yWeekStartDay;
+		[id(45)] BOOLEAN bMoveCompletedEndsBack;
+		[id(46)] BOOLEAN bMoveRemainingStartsBack;
+		[id(47)] BOOLEAN bMoveRemainingStartsForward;
+		[id(48)] BOOLEAN bMoveCompletedEndsForward;
+		[id(49)] LONG yBaselineForEarnedValue;
+		[id(50)] BOOLEAN bAutoAddNewResourcesAndTasks;
+		[id(51)] DATE dtStatusDate;
+		[id(52)] DATE dtCurrentDate;
+		[id(53)] BOOLEAN bMicrosoftProjectServerURL;
+		[id(54)] BOOLEAN bAutolink;
+		[id(55)] LONG yNewTaskStartDate;
+		[id(56)] LONG yDefaultTaskEVMethod;
+		[id(57)] BOOLEAN bProjectExternallyEdited;
+		[id(58)] DATE dtExtendedCreationDate;
+		[id(59)] BOOLEAN bActualsInSync;
+		[id(60)] BOOLEAN bRemoveFileProperties;
+		[id(61)] BOOLEAN bAdminProject;
+		[id(62)] IOutlineCodes* oOutlineCodes;
+		[id(63)] IWBSMasks* oWBSMasks;
+		[id(64)] IExtendedAttributes* oExtendedAttributes;
+		[id(65)] ICalendars* oCalendars;
+		[id(66)] ITasks* oTasks;
+		[id(67)] IResources* oResources;
+		[id(68)] IAssignments* oAssignments;
+	
+	methods:
+		[id(69)] void WriteXML(BSTR url);
+		[id(70)] void ReadXML(BSTR url);
+		[id(71)] BSTR GetXML(void);
+		[id(72)] void SetXML(BSTR sXML);
+		[id(73)] BOOLEAN IsNull(void); 
+		[id(74)] void Initialize(void);
+	};
+	
+	[ uuid(AE185D22-0256-43B9-82F5-8A4ECF339A7D) ]
+	coclass MP11
+	{
+		[default] dispinterface IMP11;
+	};

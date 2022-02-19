@@ -1,0 +1,89 @@
+[ uuid(7DA4D831-CC4E-4D4E-A5C8-70314002A8E8), version(1.0), helpfile("MSP2010.hlp"), helpstring("ActiveGanttVC Microsoft Project 2010 Integration Library"), control ]
+library MSP2010Lib
+{
+	#include <olectl.h>
+	#include <idispids.h>
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+//************************************************************************************
+
+	//  Primary dispatch interface for Duration
+	[ uuid(C46B0F9E-D1D6-4F95-B8F5-802FF349103B) ] 
+	dispinterface IDuration
+	{
+	properties:
+		[id(4)] LONG Year;
+		[id(5)] LONG Month;
+		[id(6)] LONG Day;
+		[id(7)] LONG Hour;
+		[id(8)] LONG Minute;
+		[id(9)] LONG Second;
+	methods:
+		[id(1)] BOOLEAN IsNull(void);
+		[id(2)] BSTR ToString(void);
+		[id(3)] BSTR FromString(BSTR sString);
+
+	};
+	
+	[ uuid(C6827A97-0C1B-4A34-AE67-41E88E89FBB0) ] 
+	coclass Duration
+	{
+		[default] dispinterface IDuration;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for Time
+	[ uuid(0B13FC95-AABA-4A0F-8AE7-D4063F2D0A28) ] 
+	dispinterface ITime
+	{
+	properties:
+		[id(4)] LONG Hour;
+		[id(5)] LONG Minute;
+		[id(6)] LONG Second;
+	
+	methods:
+		[id(1)] BOOLEAN IsNull(void);
+		[id(2)] BSTR ToString(void);
+		[id(3)] BSTR FromString(BSTR sString);
+
+	};
+	
+	[ uuid(B0D62F8E-3C3E-4BBA-8A86-27509D277CAD) ] 
+	coclass Time
+	{
+		[default] dispinterface ITime;
+	};
+
+//************************************************************************************
+
+	#include "odl_inc.odl"
+
+//************************************************************************************
+
+	[ uuid(7FAF00A1-838B-4834-97C1-1B3520BB058E), helpstring("Dispatch interface for MSP2010 Control"), hidden ]
+	dispinterface _DMSP2010
+	{
+		properties:
+			[id(2)] IMP14* MP14;
+		methods:
+			[id(1)] void AboutBox();
+			[id(3)] void Clear(void);
+	};
+
+	[ uuid(D5155F70-1C8F-4091-BC84-EE6694307B10), helpstring("Event interface for MSP2010 Control") ]
+	dispinterface _DMSP2010Events
+	{
+		properties:
+		methods:
+			[id(1)] void ControlError(long Number, BSTR Description, BSTR Source);
+	};
+
+	[ uuid(C56E2638-476C-44C6-B21F-91FD4348B8A5), helpstring("AG Microsoft Project 2010 XML Integration Control"), control ]
+	coclass MSP2010Ctl
+	{
+		[default] dispinterface _DMSP2010;
+		[default, source] dispinterface _DMSP2010Events;
+	};
+};

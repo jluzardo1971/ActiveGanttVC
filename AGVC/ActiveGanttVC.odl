@@ -1,0 +1,2422 @@
+[ uuid(7E44F611-0E19-4830-AC10-D62E10C1AF42), version(1.0),helpstring("ActiveGanttVC Scheduler Component"),control ]
+library AGVC
+{
+	#include <olectl.h>
+    #include <idispids.h>
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+	#include "Globals.h"
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsCultureInfo
+	[ uuid(02FA1F8D-628F-4B18-82D0-8CBCD105C754) ]
+	dispinterface IclsCultureInfo
+	{
+		properties:
+		methods:
+	};
+	//  Class information for clsCultureInfo
+	[ uuid(ADCEBA0C-B87A-44F5-BE11-29532A09421A) ]
+	coclass clsCultureInfo
+	{
+		[default] dispinterface IclsCultureInfo;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsImage
+	[ uuid(00AD05DB-9D30-40A4-9B01-90B12B651348) ]
+	dispinterface IclsImage
+	{
+		properties:
+		[id(2)] LONG Width;
+		[id(3)] LONG Height;
+		[id(6)] BSTR Filename;
+		[id(7)] BOOLEAN EmbeddedColorManagement;
+		methods:
+		[id(1)] void FromFile(BSTR Filename, BOOLEAN UseEmbeddedColorManagement);
+		[id(4)] void Clear(void);
+		[id(5)] LONG hImage(void);
+	};
+	[ uuid(25A3A87E-6063-4D12-959A-4209A5C16293) ]
+	coclass clsImage
+	{
+		[default] dispinterface IclsImage;
+	};
+
+//************************************************************************************
+	
+	//  Primary dispatch interface for clsFont
+	[ uuid(F22CBFF7-1AEC-47E8-8811-2FEAFD9F32A4) ]
+	dispinterface IclsFont
+	{
+		properties:
+		[id(1)] BSTR FontName;
+		[id(2)] FLOAT Size;
+		[id(3)] GRE_FONTSTYLE Style;
+		[id(4)] GRE_UNIT Unit;
+methods:
+	};
+	[ uuid(0FD2F46A-F54E-4BAA-889E-2AD4AFE20ED8) ]
+	coclass clsFont
+	{
+		[default] dispinterface IclsFont;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsGDIGraphics
+	[ uuid(F9E3BAED-B034-45D5-BB53-085B2B301AAC) ]
+	dispinterface IclsGDIGraphics
+	{
+		properties:
+		methods:
+		[id(1)] OLE_HANDLE GetHDC(void);
+		[id(2)] void ReleaseHDC(OLE_HANDLE hdc);
+		[id(3)] LONG StringWidth(BSTR Text, IclsFont* Font, LONG hWnd);
+		[id(4)] LONG StringHeight(BSTR Text, IclsFont* Font, LONG hWnd);
+		[id(5)] void SetLayoutRect(LONG X1, LONG Y1, LONG X2, LONG Y2);
+	};
+	[ uuid(3D6B8B4A-D9C0-4EF3-B327-C12C115A5EC6) ]
+	coclass clsGDIGraphics
+	{
+		[default] dispinterface IclsGDIGraphics;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsPrinter
+	[ uuid(26F0D4B7-133A-4FBE-949E-2ED42CAC7298) ]
+	dispinterface IclsPrinter
+	{
+	properties:
+		[id(1)] BSTR PrinterName;
+		[id(2)] GRE_PRINTERRESOLUTION PrinterResolution;
+		[id(3)] LONG HorizontalDPI;
+		[id(4)] LONG VerticalDPI;
+		[id(5)] GRE_PAPERTYPE PaperType;
+		[id(6)] GRE_ORIENTATION Orientation;
+		[id(7)] LONG MarginLeft;
+		[id(8)] LONG MarginTop;
+		[id(9)] LONG MarginRight;
+		[id(10)] LONG MarginBottom;
+		[id(11)] FLOAT Scale;
+		[id(12)] BOOLEAN HeadingsInEveryPage;
+		[id(13)] BOOLEAN ColumnsInEveryPage;
+		[id(14)] LONG Columns;
+		[id(15)] BOOLEAN KeepRowsTogether;
+		[id(16)] BOOLEAN KeepColumnsTogether;
+		[id(17)] BOOLEAN KeepTimeIntervalsTogether;
+		[id(18)] BOOLEAN ShowAllColumns;
+		[id(19)] E_INTERVAL Interval;
+		[id(20)] LONG Factor;
+		[id(21)] LONG Pages;
+		[id(22)] LONG XAxisPages;
+		[id(23)] LONG YAxisPages;
+		[id(24)] DATE PrintAreaEndDate;
+		[id(25)] DATE PrintAreaStartDate;
+		[id(26)] LONG StartRow;
+		[id(27)] LONG EndRow;
+		[id(28)] LONG PrintAreaWidth;
+		[id(29)] LONG PrintAreaHeight;
+		[id(40)] FLOAT PScale;
+	methods:
+		[id(30)] void Clear(void);
+		[id(31)] void GetPagePosition(LONG PageNumber, LONG* Column, LONG* Row);
+		[id(32)] LONG GetPageNumber(LONG Column, LONG Row);
+		[id(33)] BOOLEAN Initialize(DATE StartDate, DATE EndDate, [defaultvalue(-1)] LONG StartRow, [defaultvalue(-1)] LONG EndRow);
+		[id(34)] void Terminate(void);
+		[id(35)] void Calculate(void);
+		[id(36)] void PrintAll(void);
+		[id(37)] void PrintRange(LONG StartPage, LONG EndPage);
+		[id(38)] void PrintPage(LONG PageNumber);
+		[id(39)] void PreviewPage(OLE_HANDLE hdc, LONG PageNumber, FLOAT Scale, LONG X, LONG Y);
+	};
+	[ uuid(E49E898B-1327-4689-8051-BE52C4EF2BC4) ]
+	coclass clsPrinter
+	{
+		[default] dispinterface IclsPrinter;
+	};
+
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsMath
+	[ uuid(FA672F01-E3CD-468A-98D2-617FA388F7E1) ]
+	dispinterface IclsMath
+	{
+	properties:
+	methods:
+		[id(1)] DATE DateTimeAdd(E_INTERVAL Interval, LONG Number, DATE dtDate);
+		[id(2)] LONG DateTimeDiff(E_INTERVAL Interval, DATE dtDate1, DATE dtDate2);
+		[id(3)] LONG GetXCoordinateFromDate(DATE dtCoordinate);
+		[id(4)] DATE GetDateFromXCoordinate(LONG v_lXCoordinate);
+		[id(5)] LONG GetRowIndexByPosition(LONG Y);
+		[id(6)] LONG GetCellIndexByPosition(LONG X);
+		[id(7)] LONG GetColumnIndexByPosition(LONG X,LONG Y);
+		[id(8)] LONG GetTaskIndexByPosition(LONG X,LONG Y);
+		[id(9)] LONG GetPercentageIndexByPosition(LONG X,LONG Y);
+		[id(10)] LONG GetNodeIndexByCheckBoxPosition(LONG X,LONG Y);
+		[id(11)] LONG GetNodeIndexBySignPosition(LONG X,LONG Y);
+		[id(12)] BOOLEAN DetectConflict(DATE StartDate,DATE EndDate,BSTR RowKey,LONG ExcludeIndex,BSTR LayerIndex);
+		[id(13)] DATE RoundDate(E_INTERVAL Interval, LONG Number, DATE dtDate);
+		[id(14)] LONG RoundDouble(DOUBLE dParam);
+		[id(15)] LONG GetPredecessorIndexByPosition(LONG X,LONG Y);
+		[id(16)] LONG CalculateDuration(DATE dtStartDate,DATE dtEndDate, E_INTERVAL DurationInterval);
+		[id(17)] DATE GetEndDate(DATE StartDate, E_INTERVAL DurationInterval, LONG DurationFactor);
+	};
+	[ uuid(05A22D3B-8501-45A4-905B-D5A173D92B04) ]
+	coclass clsMath
+	{
+		[default] dispinterface IclsMath;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsCustomBorderStyle
+	[ uuid(CF1309C0-A15C-4230-B30B-76600DE745D4) ]
+	dispinterface IclsCustomBorderStyle
+	{
+	properties:
+		[id(1)] BOOLEAN Left;
+		[id(2)] BOOLEAN Top;
+		[id(3)] BOOLEAN Right;
+		[id(4)] BOOLEAN Bottom;
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+	};
+	[ uuid(98D4BC15-AFD4-4570-8A3B-2ED32A6F4B6D) ]
+	coclass clsCustomBorderStyle
+	{
+		[default] dispinterface IclsCustomBorderStyle;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTaskStyle
+	[ uuid(94D3203F-EC64-42EC-A418-1527E82AE807) ]
+	dispinterface IclsTaskStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR EndBorderColor;
+		[id(2)] OLE_COLOR EndFillColor;
+		[id(3)] OLE_COLOR StartBorderColor;
+		[id(4)] OLE_COLOR StartFillColor;
+		[id(5)] IclsImage* StartImage;
+		[id(6)] IclsImage* MiddleImage;
+		[id(7)] IclsImage* EndImage;
+		[id(8)] GRE_FIGURETYPE StartShapeIndex;
+		[id(9)] GRE_FIGURETYPE EndShapeIndex;
+		[id(12)] BSTR StartImageTag;
+		[id(13)] BSTR MiddleImageTag;
+		[id(14)] BSTR EndImageTag;
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+	};
+	[ uuid(C07FF05F-B755-42CA-95EA-9BF7FE441B63) ]
+	coclass clsTaskStyle
+	{
+		[default] dispinterface IclsTaskStyle;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsMilestoneStyle
+	[ uuid(00A53440-9950-4F4B-9385-ED168260CC41) ]
+	dispinterface IclsMilestoneStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR BorderColor;
+		[id(2)] OLE_COLOR FillColor;
+		[id(3)] GRE_FIGURETYPE ShapeIndex;
+		[id(6)] IclsImage* Image;
+		[id(7)] BSTR ImageTag;
+	methods:
+		[id(4)] BSTR GetXML(void);
+		[id(5)] void SetXML(BSTR sXML);
+	};
+	[ uuid(FB4EB87B-10CA-4683-AF38-F975FCFBD3A3) ]
+	coclass clsMilestoneStyle
+	{
+		[default] dispinterface IclsMilestoneStyle;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsPredecessorStyle
+	[ uuid(4680FBAC-FBC4-4592-B65F-1B3FD8FEC0AD) ]
+	dispinterface IclsPredecessorStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR LineColor;
+		[id(2)] LONG XOffset;
+		[id(3)] LONG YOffset;
+		[id(4)] LONG LineWidth;
+		[id(5)] GRE_LINEDRAWSTYLE LineStyle;
+		[id(6)] LONG ArrowSize;
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+	};
+	[ uuid(21D83EC2-2378-460F-9BF1-39BD57A0374F) ]
+	coclass clsPredecessorStyle
+	{
+		[default] dispinterface IclsPredecessorStyle;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTextFlags
+	[ uuid(9B183408-5FF1-4B9C-8730-E61B0C18B5D9) ]
+	dispinterface IclsTextFlags
+	{
+	properties:
+		[id(1)] GRE_VERTICALALIGNMENT VerticalAlignment;
+		[id(2)] GRE_HORIZONTALALIGNMENT HorizontalAlignment;
+		[id(3)] BOOLEAN WordWrap;
+		[id(4)] BOOLEAN RightToLeft;
+		[id(5)] LONG OffsetBottom;
+		[id(6)] LONG OffsetLeft;
+		[id(7)] LONG OffsetRight;
+		[id(8)] LONG OffsetTop;
+	methods:
+		[id(9)] BSTR GetXML(void);
+		[id(10)] void SetXML(BSTR sXML);
+	};
+	[ uuid(9AAF8333-E184-4A01-A6EC-FCEE0D1D7A88) ]
+	coclass clsTextFlags
+	{
+		[default] dispinterface IclsTextFlags;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsButtonBorderStyle
+	[ uuid(B62D37E0-B9ED-4B6D-9FF9-802205853D85) ]
+	dispinterface IclsButtonBorderStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR RaisedExteriorLeftTopColor;
+		[id(2)] OLE_COLOR RaisedInteriorLeftTopColor;
+		[id(3)] OLE_COLOR RaisedExteriorRightBottomColor;
+		[id(4)] OLE_COLOR RaisedInteriorRightBottomColor;
+		[id(5)] OLE_COLOR SunkenExteriorLeftTopColor;
+		[id(6)] OLE_COLOR SunkenInteriorLeftTopColor;
+		[id(7)] OLE_COLOR SunkenExteriorRightBottomColor;
+		[id(8)] OLE_COLOR SunkenInteriorRightBottomColor;
+
+	methods:
+		[id(9)] BSTR GetXML(void);
+		[id(10)] void SetXML(BSTR sXML);
+	};
+	[ uuid(2A19248E-5EE7-40F2-A555-EDDB84449793) ]
+	coclass clsButtonBorderStyle
+	{
+		[default] dispinterface IclsButtonBorderStyle;
+	};
+
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsScrollBarStyle
+		
+	[ uuid(9163905E-8DDC-4137-8819-29FC868B5A36) ]
+	dispinterface IclsScrollBarStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR ArrowColor;
+		[id(2)] OLE_COLOR DropShadowArrowColor;
+		[id(3)] BOOLEAN DropShadow;
+		[id(4)] LONG LeftX;
+		[id(5)] LONG LeftY;
+		[id(6)] LONG UpX;
+		[id(7)] LONG UpY;
+		[id(8)] LONG RightX;
+		[id(9)] LONG RightY;
+		[id(10)] LONG DownX;
+		[id(11)] LONG DownY;
+		[id(12)] LONG DropShadowLeftX;
+		[id(13)] LONG DropShadowLeftY;
+		[id(14)] LONG DropShadowUpX;
+		[id(15)] LONG DropShadowUpY;
+		[id(16)] LONG DropShadowRightX;
+		[id(17)] LONG DropShadowRightY;
+		[id(18)] LONG DropShadowDownX;
+		[id(19)] LONG DropShadowDownY;
+		[id(20)] LONG ArrowSize;
+	methods:
+		[id(21)] BSTR GetXML(void);
+		[id(22)] void SetXML(BSTR sXML);
+	};
+	[ uuid(5417354B-38CC-46C6-853E-C31CBE10AFCF) ]
+	coclass clsScrollBarStyle
+	{
+		[default] dispinterface IclsScrollBarStyle;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsSelectionRectangleStyle
+	[ uuid(30732742-F035-474C-A5C0-0E41E73F2DF5) ]
+	dispinterface IclsSelectionRectangleStyle
+	{
+	properties:
+		[id(1)] LONG OffsetBottom;
+		[id(2)] LONG OffsetLeft;
+		[id(3)] LONG OffsetRight;
+		[id(4)] LONG OffsetTop;
+		[id(5)] BOOLEAN Visible;
+		[id(6)] E_SELECTIONRECTANGLEMODE Mode;
+		[id(7)] LONG BorderWidth;
+		[id(8)] OLE_COLOR Color;
+	methods:
+		[id(9)] BSTR GetXML(void);
+		[id(10)] void SetXML(BSTR sXML);
+	};
+	[ uuid(4839E0DA-1418-42E6-8638-8EA94E09970A) ]
+	coclass clsSelectionRectangleStyle
+	{
+		[default] dispinterface IclsSelectionRectangleStyle;
+	};
+
+
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsStyle
+	[ uuid(FE222487-24C2-4331-8281-9D85D504E2EC) ]
+	dispinterface IclsStyle
+	{
+	properties:
+		[id(1)] OLE_COLOR HatchBackColor;
+		[id(2)] OLE_COLOR HatchForeColor;
+		[id(3)] BSTR Key;
+		[id(4)] E_STYLEAPPEARANCE Appearance;
+		[id(5)] OLE_COLOR BackColor;
+		[id(6)] GRE_PATTERN Pattern;
+		[id(7)] OLE_COLOR BorderColor;
+		[id(8)] GRE_BORDERSTYLE BorderStyle;
+		[id(9)] GRE_BUTTONSTYLE ButtonStyle;
+		[id(10)] GRE_HORIZONTALALIGNMENT TextAlignmentHorizontal;
+		[id(11)] GRE_VERTICALALIGNMENT TextAlignmentVertical;
+		[id(12)] BOOLEAN TextVisible;
+		[id(13)] LONG TextXMargin;
+		[id(14)] LONG TextYMargin;
+		[id(15)] BOOLEAN ClipText;
+		[id(16)] IclsFont* Font;
+		[id(17)] OLE_COLOR ForeColor;
+		[id(18)] LONG OffsetBottom;
+		[id(19)] LONG OffsetTop;
+		[id(20)] GRE_HORIZONTALALIGNMENT ImageAlignmentHorizontal;
+		[id(21)] GRE_VERTICALALIGNMENT ImageAlignmentVertical;
+		[id(22)] LONG ImageXMargin;
+		[id(23)] LONG ImageYMargin;
+		[id(24)] E_PLACEMENT Placement;
+		[id(25)] BOOLEAN UseMask;
+		[id(26)] E_TEXTPLACEMENT TextPlacement;
+		[id(27)] LONG PatternFactor;
+		[id(28)] GRE_HATCHSTYLE HatchStyle;
+		[id(29)] OLE_COLOR StartGradientColor;
+		[id(30)] OLE_COLOR EndGradientColor;
+		[id(31)] GRE_GRADIENTFILLMODE GradientFillMode;
+		[id(32)] GRE_FILLMODE FillMode;
+		[id(33)] GRE_BACKGROUNDMODE BackgroundMode;
+		[id(34)] BOOLEAN DrawTextInVisibleArea;
+		[id(35)] BSTR Tag;
+		[id(36)] IclsTaskStyle* TaskStyle;
+		[id(37)] IclsMilestoneStyle* MilestoneStyle;
+		[id(38)] IclsPredecessorStyle* PredecessorStyle;
+		[id(39)] IclsTextFlags* TextFlags;
+		[id(40)] IclsCustomBorderStyle* CustomBorderStyle;
+		[id(43)] LONG Index;
+		[id(44)] LONG BorderWidth;
+		[id(45)] IclsScrollBarStyle* ScrollBarStyle;
+		[id(46)] IclsSelectionRectangleStyle* SelectionRectangleStyle;
+		[id(47)] IclsButtonBorderStyle* ButtonBorderStyle;
+		[id(48)] OLE_COLOR TextEditBackColor;
+		[id(49)] OLE_COLOR TextEditForeColor;
+	methods:
+		[id(41)] BSTR GetXML(void);
+		[id(42)] void SetXML(BSTR sXML);
+		[id(50)] void Clear(void);
+		[id(51)] IclsStyle* Clone(BSTR Key);
+	};
+	[ uuid(E767BE2D-405F-4783-B7F0-DBB9AAFEFA02) ]
+	coclass clsStyle
+	{
+		[default] dispinterface IclsStyle;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsStyles
+	[ uuid(B954B2C1-D946-4C4D-8DC6-09911E14C520) ]
+	dispinterface IclsStyles
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsStyle* Item(BSTR Index);
+		[id(0), propget] IclsStyle* _Item(LPCTSTR Index);
+		[id(3)] IclsStyle* Add(BSTR Key);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] BOOLEAN ContainsKey(BSTR Key);
+	};
+	[ uuid(CB84968A-26E2-4F55-8148-40821DC58D98) ]
+	coclass clsStyles
+	{
+		[default] dispinterface IclsStyles;
+	};
+
+
+
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsButtonState
+	[ uuid(1718BDB6-A1CA-4893-87CC-6A512FD8F76D) ]
+	dispinterface IclsButtonState
+	{
+	properties:
+		[id(1)] BSTR NormalStyleIndex;
+		[id(2)] IclsStyle* NormalStyle;
+		[id(3)] BSTR PressedStyleIndex;
+		[id(4)] IclsStyle* PressedStyle;
+		[id(5)] BSTR DisabledStyleIndex;
+		[id(6)] IclsStyle* DisabledStyle;
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+	};
+	[ uuid(B9D44F50-705A-45A8-B00B-C4FF8BD2B9FB) ]
+	coclass clsButtonState
+	{
+		[default] dispinterface IclsButtonState;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsVScrollBarTemplate
+	[ uuid(EC67DC20-E7E5-486D-8F25-8207EB4BA079) ]
+	dispinterface IclsVScrollBarTemplate
+	{
+	properties:
+		[id(1)] LONG TimerInterval;
+		[id(2)] BSTR StyleIndex;
+		[id(3)] IclsStyle* Style;
+		[id(4)] IclsButtonState* ArrowButtons;
+		[id(5)] IclsButtonState* ThumbButton;
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(6C5157A6-9DF1-4405-946F-920FB3BD95EE) ]
+	coclass clsVScrollBarTemplate
+	{
+		[default] dispinterface IclsVScrollBarTemplate;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsHScrollBarTemplate
+	[ uuid(C4E0B52F-E7AE-490B-B781-9CA83ADF9F8F) ]
+	dispinterface IclsHScrollBarTemplate
+	{
+	properties:
+		[id(1)] LONG TimerInterval;
+		[id(2)] BSTR StyleIndex;
+		[id(3)] IclsStyle* Style;
+		[id(4)] IclsButtonState* ArrowButtons;
+		[id(5)] IclsButtonState* ThumbButton;
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(9DA609FD-ADC9-4D59-883E-D73FC7E71FF9) ]
+	coclass clsHScrollBarTemplate
+	{
+		[default] dispinterface IclsHScrollBarTemplate;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsScrollBarSeparator
+	[ uuid(BE2D822E-8865-49C8-B605-F2F6903F47AB) ]
+	dispinterface IclsScrollBarSeparator
+	{
+	properties:
+
+		[id(1)] BSTR StyleIndex;
+		[id(2)] IclsStyle* Style;
+	methods:
+		[id(3)] BSTR GetXML(void);
+		[id(4)] void SetXML(BSTR sXML);
+	};
+	[ uuid(FDDCD8B2-195D-40D2-A844-F9EDDAD6C58E) ]
+	coclass clsScrollBarSeparator
+	{
+		[default] dispinterface IclsScrollBarSeparator;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsVerticalScrollBar
+	[ uuid(340B331A-EBFE-4D4B-A860-7D8EECE8EF45) ]
+	dispinterface IclsVerticalScrollBar
+	{
+	properties:
+		[id(1)] LONG Min;
+		[id(2)] LONG Max;
+		[id(3)] LONG Value;
+		[id(4)] BOOLEAN Visible;
+		[id(5)] LONG SmallChange;
+		[id(6)] LONG LargeChange;
+		[id(7)] IclsVScrollBarTemplate* ScrollBar;
+	methods:
+		[id(8)] BSTR GetXML(void);
+		[id(9)] void SetXML(BSTR sXML);
+	};
+	[ uuid(A36496EB-178E-426C-BD1A-7B987873A2D4) ]
+	coclass clsVerticalScrollBar
+	{
+		[default] dispinterface IclsVerticalScrollBar;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsHorizontalScrollBar
+	[ uuid(C98BEB5B-261C-4183-A179-0F3E15CBBF89) ]
+	dispinterface IclsHorizontalScrollBar
+	{
+	properties:
+		[id(1)] LONG Min;
+		[id(2)] LONG Max;
+		[id(3)] LONG Value;
+		[id(4)] BOOLEAN Visible;
+		[id(5)] LONG SmallChange;
+		[id(6)] LONG LargeChange;
+		[id(7)] IclsHScrollBarTemplate* ScrollBar;
+	methods:
+		[id(8)] BSTR GetXML(void);
+		[id(9)] void SetXML(BSTR sXML);
+	};
+	[ uuid(E36C2CEB-770D-46E7-99BE-945BA476BC6F) ]
+	coclass clsHorizontalScrollBar
+	{
+		[default] dispinterface IclsHorizontalScrollBar;
+	};
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsSplitter
+	[ uuid(3D059D62-42B7-4801-B87D-346B478137F2) ]
+	dispinterface IclsSplitter
+	{
+	properties:
+		[id(1)] E_BORDERSTYLE Appearance;
+		[id(2)] LONG Position;
+		[id(7)] E_SPLITTERTYPE Type;
+		[id(8)] LONG Width;
+		[id(9)] BSTR StyleIndex;
+		[id(10)] IclsStyle* Style;
+		[id(11)] LONG Offset;
+	methods:
+		[id(3)] BSTR GetXML(void);
+		[id(4)] void SetXML(BSTR sXML);
+		[id(5)] void SetColor(LONG Index, OLE_COLOR oColor);
+		[id(6)] OLE_COLOR GetColor(LONG Index);
+	};
+	[ uuid(9D06745C-D1B8-4C80-AC32-5D59ED6D2D34) ]
+	coclass clsSplitter
+	{
+		[default] dispinterface IclsSplitter;
+	};
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTreeview
+	[ uuid(74CA6930-8845-4556-AE74-0F217D7360AF) ]
+	dispinterface IclsTreeview
+	{
+	properties:
+
+		[id(1)] LONG FirstVisibleNode;
+		[id(2)] LONG LastVisibleNode;
+		[id(3)] LONG Indentation;
+		[id(4)] OLE_COLOR CheckBoxBorderColor;
+		[id(5)] OLE_COLOR CheckBoxBackColor;
+		[id(6)] OLE_COLOR CheckBoxMarkColor;
+		[id(7)] OLE_COLOR BackColor;
+		[id(8)] BSTR PathSeparator;
+		[id(9)] BOOLEAN TreeLines;
+		[id(10)] E_TREEVIEWMODE TreeviewMode;
+		[id(11)] BOOLEAN Images;
+		[id(12)] BOOLEAN CheckBoxes;
+		[id(13)] BOOLEAN FullColumnSelect;
+		[id(14)] BOOLEAN ExpansionOnSelection;
+		[id(15)] OLE_COLOR SelectedBackColor;
+		[id(16)] OLE_COLOR SelectedForeColor;
+		[id(17)] OLE_COLOR TreeLineColor;
+		[id(18)] OLE_COLOR PlusMinusBorderColor;
+		[id(19)] OLE_COLOR PlusMinusSignColor;
+		[id(23)] GRE_BACKGROUNDMODE CheckBoxBackgroundMode;
+		[id(24)] OLE_COLOR PlusMinusBackColor;
+		[id(25)] GRE_BACKGROUNDMODE PlusMinusBackgroundMode;
+		[id(26)] OLE_COLOR ExpandIconForeColor; 
+		[id(27)] OLE_COLOR ExpandIconBackColor; 
+		[id(28)] OLE_COLOR ExpandIconDropShadowColor;
+		[id(29)] OLE_COLOR CollapseIconForeColor;
+		[id(30)] OLE_COLOR CollapseIconDropShadowColor;
+	methods:
+		[id(20)] void ClearSelections(void);
+		[id(21)] void SetXML(BSTR sXML);
+		[id(22)] BSTR GetXML(void);
+	};
+	[ uuid(47FACBE2-D949-40C3-ADB0-D1078B252B46) ]
+	coclass clsTreeview
+	{
+		[default] dispinterface IclsTreeview;
+	};
+	
+	
+
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsToolTip
+	[ uuid(516BC300-A07D-40FB-94F8-6FFF191683E8) ]
+	dispinterface IclsToolTip
+	{
+	properties:
+		[id(1)] IclsFont* Font;
+		[id(2)] OLE_COLOR BackColor;
+		[id(3)] OLE_COLOR ForeColor;
+		[id(4)] OLE_COLOR BorderColor;
+		[id(5)] BSTR Text;
+		[id(6)] BOOLEAN AutomaticSizing;
+		[id(7)] LONG Left;
+		[id(8)] LONG Right;
+		[id(9)] LONG Top;
+		[id(10)] LONG Bottom;
+		[id(11)] LONG Width;
+		[id(12)] LONG Height;
+		[id(13)] BOOLEAN Visible;
+	methods:
+	};
+	[ uuid(CEA1B67A-F369-4DFD-87FD-046AB2FAAA46) ]
+	coclass clsToolTip
+	{
+		[default] dispinterface IclsToolTip;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsLayer
+	[ uuid(3003C1B0-4FD8-49EC-B77E-AFFF7853C74C) ]
+	dispinterface IclsLayer
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] BOOLEAN Visible;
+		[id(3)] BSTR Tag;
+		[id(6)] LONG Index;
+	methods:
+		[id(4)] BSTR GetXML(void);
+		[id(5)] void SetXML(BSTR sXML);
+	};
+	[ uuid(6322FA01-EF11-4A92-9CC6-2C2C72C4FBC6) ]
+	coclass clsLayer
+	{
+		[default] dispinterface IclsLayer;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsLayers
+	[ uuid(4EF77010-A13E-476F-9328-C907D8D99DB6) ]
+	dispinterface IclsLayers
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsLayer* Item(BSTR Index);
+		[id(0), propget] IclsLayer* _Item(LPCTSTR Index);
+		[id(3)] IclsLayer* Add(BSTR Key,BOOLEAN Visible);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(D7E163D0-DE1E-4F59-8EEA-CBF1F3FE0218) ]
+	coclass clsLayers
+	{
+		[default] dispinterface IclsLayers;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsNode
+	[ uuid(AA3EF537-3637-4EB9-8721-40B33F7C333B) ]
+	dispinterface IclsNode
+	{
+	properties:
+		[id(1)] IDispatch* Row;
+		[id(2)] BOOLEAN CheckBoxVisible;
+		[id(3)] BOOLEAN ImageVisible;
+		[id(4)] LONG Left;
+		[id(5)] LONG Top;
+		[id(6)] LONG Bottom;
+		[id(7)] LONG Depth;
+		[id(8)] BOOLEAN Expanded;
+		[id(9)] BOOLEAN Selected;
+		[id(10)] IclsImage* ExpandedImage;
+		[id(11)] IclsImage* SelectedImage;
+		[id(12)] IclsImage* Image;
+		[id(13)] BSTR Tag;
+		[id(14)] BSTR Text;
+		[id(15)] BOOLEAN Checked;
+		[id(16)] LONG Height;
+		[id(17)] BOOLEAN Hidden;
+		[id(31)] BSTR ExpandedImageTag;
+		[id(32)] BSTR SelectedImageTag;
+		[id(33)] BSTR ImageTag;
+		[id(34)] BSTR StyleIndex;
+		[id(35)] IclsStyle* Style;
+		[id(36)] BOOLEAN AllowTextEdit;
+	methods:
+		[id(18)] IclsNode* NextSibling(void);
+		[id(19)] IclsNode* PreviousSibling(void);
+		[id(20)] BOOLEAN IsFirstSibling(void);
+		[id(21)] IclsNode* FirstSibling(void);
+		[id(22)] BOOLEAN IsLastSibling(void);
+		[id(23)] IclsNode* LastSibling(void);
+		[id(24)] IclsNode* Child(void);
+		[id(25)] IclsNode* Parent(void);
+		[id(26)] BOOLEAN IsRoot(void);
+		[id(27)] BSTR FullPath(void);
+		[id(28)] LONG Children(void);
+		[id(29)] BSTR GetXML(void);
+		[id(30)] void SetXML(BSTR sXML);
+	};
+	[ uuid(115AF1AC-67AD-43B1-9534-F41AF71F7A4E) ]
+	coclass clsNode
+	{
+		[default] dispinterface IclsNode;
+	};
+
+
+//************************************************************************************
+
+	interface IclsRow;
+
+	//  Primary dispatch interface for clsCell
+	[ uuid(A2E1E15A-EC10-4970-A334-10E00C396BB5) ]
+	dispinterface IclsCell
+	{
+	properties:
+		[id(1)] IclsRow* Row;
+		[id(2)] BSTR Key;
+		[id(3)] BSTR Text;
+		[id(4)] IclsImage* Image;
+		[id(5)] BSTR StyleIndex;
+		[id(6)] IclsStyle* Style;
+		[id(7)] BSTR Tag;
+		[id(8)] BSTR RowKey;
+		[id(9)] LONG Left;
+		[id(10)] LONG Top;
+		[id(11)] LONG Right;
+		[id(12)] LONG Bottom;
+		[id(13)] LONG LeftTrim;
+		[id(14)] LONG RightTrim;
+		[id(17)] LONG Index;
+		[id(18)] BSTR ImageTag;
+		[id(19)] BOOLEAN AllowTextEdit;
+	methods:
+		[id(15)] BSTR GetXML(void);
+		[id(16)] void SetXML(BSTR sXML);
+	};
+	[ uuid(839E7680-CEEA-4F23-88EC-DCC7D2066A10) ]
+	coclass clsCell
+	{
+		[default] dispinterface IclsCell;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsCells
+	[ uuid(4B08BDBB-4D00-480C-9C70-D962A3F33B6F) ]
+	dispinterface IclsCells
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsCell* Item(BSTR Index);
+		[id(0), propget] IclsCell* _Item(LPCTSTR Index);
+		[id(3)] BSTR GetXML(void);
+		[id(4)] void SetXML(BSTR sXML);
+	};
+	[ uuid(5856834D-3C39-4DA9-A5E5-09E0A27D14E8) ]
+	coclass clsCells
+	{
+		[default] dispinterface IclsCells;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsRow
+	[ uuid(3D5F7B28-8E26-4BF3-AB60-653A1F529F05) ]
+	dispinterface IclsRow
+	{
+	properties:
+		[id(1)] BOOLEAN AllowMove;
+		[id(2)] BOOLEAN AllowSize;
+		[id(3)] BSTR Key;
+		[id(4)] BOOLEAN Container;
+		[id(5)] BOOLEAN UseNodeImages;
+		[id(6)] BOOLEAN MergeCells;
+		[id(7)] LONG Height;
+		[id(8)] BSTR Text;
+		[id(9)] IclsImage* Image;
+		[id(10)] BSTR StyleIndex;
+		[id(11)] IclsStyle* Style;
+		[id(12)] BSTR Tag;
+		[id(13)] BSTR ClientAreaStyleIndex;
+		[id(14)] IclsStyle* ClientAreaStyle;
+		[id(15)] LONG Left;
+		[id(16)] LONG Top;
+		[id(17)] LONG Right;
+		[id(18)] LONG Bottom;
+		[id(19)] BOOLEAN Visible;
+		[id(20)] IclsNode* Node;
+		[id(21)] IclsCells* Cells;
+		[id(24)] LONG Index;
+		[id(25)] BSTR ImageTag;
+		[id(26)] BOOLEAN AllowTextEdit;
+		[id(27)] BOOLEAN Highlighted;
+
+	methods:
+		[id(22)] BSTR GetXML(void);
+		[id(23)] void SetXML(BSTR sXML);
+	};
+	[ uuid(6050BA5F-17A5-4936-8930-ACADB94C8BB9) ]
+	coclass clsRow
+	{
+		[default] dispinterface IclsRow;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsRows
+	[ uuid(C1A6AEAA-2967-4AFD-ADC4-9EEF49913F82) ]
+	dispinterface IclsRows
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsRow* Item(BSTR Index);
+		[id(0), propget] IclsRow* _Item(LPCTSTR Index);
+		[id(3)] void Clear(void);
+		[id(4)] void Remove(BSTR Index);
+		[id(5)] void MoveRow(LONG OriginRowIndex,LONG DestRowIndex);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(8)] IclsRow* Add(BSTR Key, [defaultvalue("")] BSTR Text, [defaultvalue(FALSE)] BOOLEAN MergeCells, [defaultvalue(TRUE)] BOOLEAN Container, [defaultvalue("")] BSTR StyleIndex);
+		[id(9)] void SortRows(BSTR PropertyName, BOOLEAN Descending, E_SORTTYPE SortType, [defaultvalue(0)] LONG StartIndex, [defaultvalue(0)] LONG EndIndex);
+		[id(10)] void SortCells(LONG CellIndex, BSTR PropertyName, BOOLEAN Descending, E_SORTTYPE SortType, [defaultvalue(0)] LONG StartIndex, [defaultvalue(0)] LONG EndIndex);
+		[id(11)] void UpdateTree(void);
+		[id(12)] void BeginLoad(BOOLEAN Preserve);
+		[id(13)] IclsRow* Load(BSTR sKey);
+		[id(14)] void EndLoad(void);
+		[id(15)] BOOLEAN VerifyTree(void);
+	};
+	[ uuid(925007DE-388B-4553-80D0-F6A575C8A422) ]
+	coclass clsRows
+	{
+		[default] dispinterface IclsRows;
+	};
+
+
+//************************************************************************************
+
+	interface IclsTask;
+
+	//  Primary dispatch interface for clsPredecessor
+	[ uuid(71546057-2C77-4259-939D-752EEE5312DA) ]
+	dispinterface IclsPredecessor
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] BOOLEAN Visible;
+		[id(3)] BSTR PredecessorKey;
+		[id(4)] IclsTask* PredecessorTask;
+		[id(5)] E_CONSTRAINTTYPE PredecessorType;
+		[id(6)] BSTR StyleIndex;
+		[id(7)] IclsStyle* Style;
+		[id(8)] BSTR Tag;
+		[id(11)] LONG Index;
+		[id(12)] BSTR SuccessorKey;
+		[id(13)] IclsTask* SuccessorTask;
+		[id(14)] E_INTERVAL LagInterval;
+		[id(15)] LONG LagFactor;
+		[id(16)] BOOLEAN Warning;
+		[id(17)] BSTR WarningStyleIndex;
+		[id(18)] IclsStyle* WarningStyle;
+		[id(19)] BSTR SelectedStyleIndex;
+		[id(20)] IclsStyle* SelectedStyle;
+	methods:
+		[id(9)] BSTR GetXML(void);
+		[id(10)] void SetXML(BSTR sXML);
+	};
+	[ uuid(43E2E679-CFBE-4A99-8C74-20B3FCF540C4) ]
+	coclass clsPredecessor
+	{
+		[default] dispinterface IclsPredecessor;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsPredecessors
+	[ uuid(8C98A18F-998C-412F-BB7D-33C7D0337921) ]
+	dispinterface IclsPredecessors
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsPredecessor* Item(BSTR Index);
+		[id(0), propget] IclsPredecessor* _Item(LPCTSTR Index);
+		[id(3)] IclsPredecessor* Add(BSTR SuccessorKey, BSTR PredecessorKey, E_CONSTRAINTTYPE PredecessorType, BSTR Key, BSTR StyleIndex);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(C61C8D21-775F-4930-A081-5ACE027356CA) ]
+	coclass clsPredecessors
+	{
+		[default] dispinterface IclsPredecessors;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTask
+	[ uuid(7498F106-3C16-4971-91D0-54984352DC42) ]
+	dispinterface IclsTask
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] BOOLEAN IncomingPredecessors;
+		[id(3)] BOOLEAN OutgoingPredecessors;
+		[id(4)] BOOLEAN AllowStretchLeft;
+		[id(5)] BOOLEAN AllowStretchRight;
+		[id(6)] BSTR Text;
+		[id(7)] BSTR LayerIndex;
+		[id(8)] IclsLayer* Layer;
+		[id(9)] IclsImage* Image;
+		[id(10)] BSTR RowKey;
+		[id(11)] IclsRow* Row;
+		[id(12)] BSTR StyleIndex;
+		[id(13)] IclsStyle* Style;
+		[id(14)] BSTR Tag;
+		[id(15)] E_MOVEMENTTYPE AllowedMovement;
+		[id(16)] LONG LeftTrim;
+		[id(17)] LONG RightTrim;
+		[id(18)] DATE StartDate;
+		[id(19)] LONG Left;
+		[id(20)] LONG Right;
+		[id(21)] DATE EndDate;
+		[id(22)] LONG Top;
+		[id(23)] LONG Bottom;
+		[id(24)] BOOLEAN Visible;
+		[id(25)] E_OBJECTTYPE Type;
+		[id(26)] LONG Index;
+		[id(27)] BSTR ImageTag;
+		[id(28)] BOOLEAN AllowTextEdit;
+		[id(29)] BOOLEAN Warning;
+		[id(30)] BSTR WarningStyleIndex;
+		[id(31)] IclsStyle* WarningStyle;
+		[id(32)] E_TASKTYPE TaskType;
+		[id(33)] E_INTERVAL DurationInterval;
+		[id(34)] LONG DurationFactor;
+	methods:
+		[id(35)] BOOLEAN InConflict(void);
+		[id(36)] BSTR GetXML(void);
+		[id(37)] void SetXML(BSTR sXML);
+
+	};
+	[ uuid(EEAECDE1-B760-454D-8942-6B56DC7E1877) ]
+	coclass clsTask
+	{
+		[default] dispinterface IclsTask;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTasks
+	[ uuid(BDE36FA1-AF28-4F71-8785-8DF7C541BF7F) ]
+	dispinterface IclsTasks
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsTask* Item(BSTR Index);
+		[id(0), propget] IclsTask* _Item(LPCTSTR Index);
+		[id(3)] IclsTask* Add(BSTR Text,BSTR RowKey,DATE StartDate,DATE EndDate,BSTR Key,BSTR StyleIndex,BSTR LayerIndex);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] void Sort(BSTR PropertyName,BOOLEAN Descending,E_SORTTYPE SortType,LONG StartIndex,LONG EndIndex);
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+		[id(9)] void BeginLoad(BOOLEAN Preserve);
+		[id(10)] IclsTask* Load(BSTR sRowKey,BSTR sKey);
+		[id(11)] void EndLoad(void);
+		[id(12)] IclsTask* DAdd(BSTR RowKey, DATE StartDate, E_INTERVAL DurationInterval, LONG DurationFactor, BSTR Text, BSTR Key, BSTR StyleIndex, BSTR LayerIndex);
+	};
+	[ uuid(7ED57F62-F65C-4B5B-AF57-EF0488B0ABD9) ]
+	coclass clsTasks
+	{
+		[default] dispinterface IclsTasks;
+	};
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTimeBlock
+	[ uuid(F1B83CF4-5590-4DD5-A125-E587310A7B99) ]
+	dispinterface IclsTimeBlock
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] E_TIMEBLOCKTYPE TimeBlockType;
+		[id(3)] E_RECURRINGTYPE RecurringType;
+		[id(4)] BSTR StyleIndex;
+		[id(5)] IclsStyle* Style;
+		[id(6)] BSTR Tag;
+		[id(7)] BOOLEAN GenerateConflict;
+		[id(8)] LONG LeftTrim;
+		[id(9)] LONG RightTrim;
+		[id(10)] LONG Left;
+		[id(11)] LONG Top;
+		[id(12)] LONG Right;
+		[id(13)] LONG Bottom;
+		[id(14)] BOOLEAN Visible;
+		[id(15)] LONG Index;
+		[id(16)] DATE BaseDate;
+		[id(17)] E_WEEKDAY BaseWeekDay;
+		[id(18)] E_INTERVAL DurationInterval;
+		[id(19)] LONG DurationFactor;
+		[id(20)] BOOLEAN NonWorking;
+	methods:
+		[id(21)] BSTR GetXML(void);
+		[id(22)] void SetXML(BSTR sXML);
+	};
+	[ uuid(05E7915D-7920-432D-A576-EDD3AEC25EFD) ]
+	coclass clsTimeBlock
+	{
+		[default] dispinterface IclsTimeBlock;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTimeBlocks
+	[ uuid(EF7A5D9F-E35D-421F-AC1F-43934AE75DE5) ]
+	dispinterface IclsTimeBlocks
+	{
+	properties:
+		[id(1)] LONG Count;
+		[id(8)] DATE IntervalStart;
+		[id(9)] DATE IntervalEnd;
+		[id(10)] E_TBINTERVALTYPE IntervalType;
+	methods:
+		[id(2), propget] IclsTimeBlock* Item(BSTR Index);
+		[id(0), propget] IclsTimeBlock* _Item(LPCTSTR Index);
+		[id(3)] void Clear(void);
+		[id(4)] void Remove(BSTR Index);
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] IclsTimeBlock* Add([defaultvalue("")] BSTR Key);
+		[id(11)] void CalculateInterval(void);
+		[id(12)] BSTR CP_GetXML(void);
+		[id(13)] void CP_SetXML(BSTR sXML);
+
+	};
+	[ uuid(6CE166AD-2CC0-45C9-B733-45E54154B817) ]
+	coclass clsTimeBlocks
+	{
+		[default] dispinterface IclsTimeBlocks;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsColumn
+	[ uuid(FFBDEC51-A8AF-4287-AB4F-B4BCC7D2C894) ]
+	dispinterface IclsColumn
+	{
+	properties:
+		[id(1)] BOOLEAN AllowMove;
+		[id(2)] BOOLEAN AllowSize;
+		[id(3)] BSTR Key;
+		[id(4)] LONG Width;
+		[id(5)] BSTR Text;
+		[id(6)] IclsImage* Image;
+		[id(7)] BSTR StyleIndex;
+		[id(8)] IclsStyle* Style;
+		[id(9)] BSTR Tag;
+		[id(10)] LONG LeftTrim;
+		[id(11)] LONG RightTrim;
+		[id(12)] LONG Left;
+		[id(13)] LONG Top;
+		[id(14)] LONG Right;
+		[id(15)] LONG Bottom;
+		[id(16)] BOOLEAN Visible;
+		[id(19)] LONG Index;
+		[id(20)] BSTR ImageTag;
+		[id(21)] BOOLEAN AllowTextEdit;
+	methods:
+		[id(17)] BSTR GetXML(void);
+		[id(18)] void SetXML(BSTR sXML);
+	};
+	[ uuid(D35C6591-D305-488C-B5F2-FAABA93D80FD) ]
+	coclass clsColumn
+	{
+		[default] dispinterface IclsColumn;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsColumns
+	[ uuid(5A5CD870-0C09-4FF9-AAF7-722D226E9E08) ]
+	dispinterface IclsColumns
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsColumn* Item(BSTR Index);
+		[id(0), propget] IclsColumn* _Item(LPCTSTR Index);
+		[id(3)] IclsColumn* Add(BSTR Text,BSTR Key,LONG Width,BSTR StyleIndex);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] void MoveColumn(LONG OriginColumnIndex,LONG DestColumnIndex);
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+	};
+	[ uuid(4E43DBB3-EDE0-4CBC-848B-20069B58FC0C) ]
+	coclass clsColumns
+	{
+		[default] dispinterface IclsColumns;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsDrawing
+	[ uuid(8D98D82E-E066-48EE-A597-75B65301130A) ]
+	dispinterface IclsDrawing
+	{
+	properties:
+		[id(8)] IclsTextFlags* TextFlags;
+		[id(9)] IclsImage* Image;
+		[id(10)] IclsFont* Font;
+	methods:
+		[id(1)] IclsGDIGraphics* GraphicsInfo(void);
+		[id(2)] void DrawLine(LONG X1, LONG Y1, LONG X2, LONG Y2, OLE_COLOR LineColor, GRE_LINEDRAWSTYLE LineStyle, LONG LineWidth);
+		[id(3)] void DrawBorder(LONG X1, LONG Y1, LONG X2, LONG Y2, OLE_COLOR LineColor, GRE_LINEDRAWSTYLE LineStyle, LONG LineWidth);
+		[id(4)] void DrawRectangle(LONG X1, LONG Y1, LONG X2, LONG Y2, OLE_COLOR LineColor, GRE_LINEDRAWSTYLE LineStyle, LONG LineWidth);
+		[id(5)] void DrawText(LONG X1, LONG Y1, LONG X2, LONG Y2, BSTR Text, OLE_COLOR TextColor, IclsFont* TextFont);
+		[id(6)] void DrawAlignedText(LONG X1, LONG Y1, LONG X2, LONG Y2, BSTR Text, GRE_HORIZONTALALIGNMENT HorizontalAlignment, GRE_VERTICALALIGNMENT VerticalAlignment, OLE_COLOR TextColor, IclsFont* TextFont);
+		[id(7)] void PaintImage(IclsImage* Image, LONG X1, LONG Y1, LONG X2, LONG Y2);
+		[id(11)] void DrawObject(LONG X1, LONG Y1, LONG X2, LONG Y2, BSTR StyleIndex, BSTR Text, BOOLEAN Selected, IclsImage* Image, GRE_DRAWINGOBJECT ObjectType); 
+		
+	};
+	[ uuid(F8B85729-648D-43CF-8E88-05A9898A7FE9) ]
+	coclass clsDrawing
+	{
+		[default] dispinterface IclsDrawing;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsPercentage
+	[ uuid(1FF6240F-B3CC-4861-91E5-5A032166F149) ]
+	dispinterface IclsPercentage
+	{
+	properties:
+		[id(1)] BOOLEAN AllowSize;
+		[id(2)] BSTR Key;
+		[id(3)] FLOAT Percent;
+		[id(4)] BSTR TaskKey;
+		[id(5)] IclsTask* Task;
+		[id(6)] IclsLayer* Layer;
+		[id(7)] BSTR Format;
+		[id(8)] BSTR StyleIndex;
+		[id(9)] IclsStyle* Style;
+		[id(10)] BSTR Tag;
+		[id(11)] LONG LeftTrim;
+		[id(12)] LONG RightTrim;
+		[id(13)] LONG Left;
+		[id(14)] LONG Top;
+		[id(15)] LONG Bottom;
+		[id(16)] LONG Right;
+		[id(17)] BOOLEAN Visible;
+		[id(20)] LONG Index;
+
+	methods:
+		[id(18)] BSTR GetXML(void);
+		[id(19)] void SetXML(BSTR sXML);
+		[id(21)] BSTR ToString(void);
+	};
+	[ uuid(C70B902D-B6D7-4104-9D24-C543D210BECA) ]
+	coclass clsPercentage
+	{
+		[default] dispinterface IclsPercentage;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsPercentages
+	[ uuid(95620627-D756-4697-8217-D8190DBACA1C) ]
+	dispinterface IclsPercentages
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsPercentage* Item(BSTR Index);
+		[id(0), propget] IclsPercentage* _Item(LPCTSTR Index);
+		[id(3)] IclsPercentage* Add(BSTR TaskKey, BSTR StyleIndex, FLOAT Percent, BSTR Key);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(A4A469B6-A527-426F-A955-7B43DD5F0C01) ]
+	coclass clsPercentages
+	{
+		[default] dispinterface IclsPercentages;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsGrid
+	[ uuid(A7C516C7-44C6-4DC2-BF5F-A50E9CF27982) ]
+	dispinterface IclsGrid
+	{
+	properties:
+		[id(1)] BOOLEAN VerticalLines;
+		[id(2)] BOOLEAN SnapToGrid;
+		[id(3)] BOOLEAN SnapToGridOnSelection;
+		[id(4)] OLE_COLOR Color;
+		[id(5)] E_INTERVAL Interval;
+		[id(6)] LONG Factor;
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+	};
+	[ uuid(A0CA2CF9-1217-47CB-ABA8-CB7B60E56802) ]
+	coclass clsGrid
+	{
+		[default] dispinterface IclsGrid;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsClientArea
+	[ uuid(CD771458-FDE5-4FAA-BA09-0CD6743F0B68) ]
+	dispinterface IclsClientArea
+	{
+	properties:
+		[id(1)] BOOLEAN DetectConflicts;
+		[id(2)] LONG MilestoneSelectionOffset;
+		[id(3)] LONG FirstVisibleRow;
+		[id(4)] LONG LastVisibleRow;
+		[id(5)] BSTR ToolTipFormat;
+		[id(6)] BOOLEAN ToolTipsVisible;
+		[id(7)] LONG Top;
+		[id(8)] LONG Bottom;
+		[id(9)] LONG Left;
+		[id(10)] LONG Right;
+		[id(11)] LONG Width;
+		[id(12)] LONG Height;
+		[id(13)] IclsGrid* Grid;
+		[id(16)] LONG PredecessorSelectionOffset;
+		[id(17)] LONG TaskBorderSelectionOffset;
+	methods:
+		[id(14)] BSTR GetXML(void);
+		[id(15)] void SetXML(BSTR sXML);
+	};
+	[ uuid(8217AF7D-97D1-4952-824C-658FF255EF33) ]
+	coclass clsClientArea
+	{
+		[default] dispinterface IclsClientArea;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTimeLineScrollBar
+	[ uuid(FE03E8A1-4EA7-4CAC-90ED-20A53EAA714F) ]
+	dispinterface IclsTimeLineScrollBar
+	{
+	properties:
+		[id(1)] E_INTERVAL Interval;
+		[id(2)] LONG Value;
+		[id(3)] BOOLEAN Enabled;
+		[id(4)] BOOLEAN Visible;
+		[id(5)] LONG LargeChange;
+		[id(6)] LONG Max;
+		[id(7)] LONG SmallChange;
+		[id(8)] DATE StartDate;
+		[id(9)] IclsHScrollBarTemplate* ScrollBar;
+		[id(12)] LONG Factor;
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+	};
+	[ uuid(D805318C-5FF6-4A77-B988-E3A31541E80D) ]
+	coclass clsTimeLineScrollBar
+	{
+		[default] dispinterface IclsTimeLineScrollBar;
+	};
+
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTier
+	[ uuid(B3F99910-DCE3-4B7A-B550-D8994835D475) ]
+	dispinterface IclsTier
+	{
+	properties:
+		[id(1)] BOOLEAN Visible;
+		[id(2)] BSTR Tag;
+		[id(3)] E_INTERVAL Interval;
+		[id(4)] E_TIERTYPE TierType;
+		[id(5)] LONG Height;
+		[id(8)] LONG Factor;
+		[id(9)] BSTR StyleIndex;
+		[id(10)] IclsStyle* Style;
+		[id(11)] E_TIERBACKGROUNDMODE BackgroundMode;
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(D28E88BF-9715-4A22-B299-583359927F2B) ]
+	coclass clsTier
+	{
+		[default] dispinterface IclsTier;
+	};
+
+
+//************************************************************************************
+
+
+	//  Primary dispatch interface for clsTierFormat
+	[ uuid(F0E83CB9-4115-476B-B026-F88213427B23) ]
+	dispinterface IclsTierFormat
+	{
+	properties:
+		[id(1)] BSTR MinuteIntervalFormat;
+		[id(2)] BSTR HourIntervalFormat;
+		[id(3)] BSTR DayIntervalFormat;
+		[id(4)] BSTR DayOfWeekIntervalFormat;
+		[id(5)] BSTR DayOfYearIntervalFormat;
+		[id(6)] BSTR WeekIntervalFormat;
+		[id(7)] BSTR MonthIntervalFormat;
+		[id(8)] BSTR QuarterIntervalFormat;
+		[id(9)] BSTR YearIntervalFormat;
+		[id(12)] BSTR SecondIntervalFormat;
+		[id(13)] BSTR MillisecondIntervalFormat;
+		[id(14)] BSTR MicrosecondIntervalFormat;
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+	};
+	[ uuid(28B7B4F5-0ED9-4070-BBDF-56E7603AB391) ]
+	coclass clsTierFormat
+	{
+		[default] dispinterface IclsTierFormat;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTierColor
+	[ uuid(6CBB6C0A-2495-42DE-87CE-A54462A39E0F) ]
+	dispinterface IclsTierColor
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] OLE_COLOR ForeColor;
+		[id(3)] OLE_COLOR BackColor;
+		[id(6)] LONG Index;
+		[id(7)] OLE_COLOR StartGradientColor;
+		[id(8)] OLE_COLOR EndGradientColor;
+		[id(9)] OLE_COLOR HatchBackColor;
+		[id(10)] OLE_COLOR HatchForeColor;
+
+	methods:
+		[id(4)] BSTR GetXML(void);
+		[id(5)] void SetXML(BSTR sXML);
+	};
+	[ uuid(11AA8015-748C-4F1D-8372-8035C2EB4EE8) ]
+	coclass clsTierColor
+	{
+		[default] dispinterface IclsTierColor;
+	};
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTierColors
+	[ uuid(DC6F9823-0DA9-4B39-94DC-004351CFA082) ]
+	dispinterface IclsTierColors
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsTierColor* Item(BSTR Index);
+		[id(0), propget] IclsTierColor* _Item(LPCTSTR Index);
+		[id(3)] BSTR GetXML(void);
+		[id(4)] void SetXML(BSTR sXML);
+	};
+	[ uuid(40C39476-CC07-45B5-A768-91EC4E8C21D8) ]
+	coclass clsTierColors
+	{
+		[default] dispinterface IclsTierColors;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTierAppearance
+	[ uuid(F3635208-6FBD-4998-A7F2-4C3BEB83D582) ]
+	dispinterface IclsTierAppearance
+	{
+	properties:
+		[id(1)] IclsTierColors* MinuteColors;
+		[id(2)] IclsTierColors* HourColors;
+		[id(3)] IclsTierColors* DayColors;
+		[id(4)] IclsTierColors* DayOfWeekColors;
+		[id(5)] IclsTierColors* DayOfYearColors;
+		[id(6)] IclsTierColors* WeekColors;
+		[id(7)] IclsTierColors* MonthColors;
+		[id(8)] IclsTierColors* QuarterColors;
+		[id(9)] IclsTierColors* YearColors;
+		[id(12)] IclsTierColors* SecondColors;
+		[id(13)] IclsTierColors* MillisecondColors;
+		[id(14)] IclsTierColors* MicrosecondColors;
+	methods:
+		[id(10)] BSTR GetXML(void);
+		[id(11)] void SetXML(BSTR sXML);
+	};
+	[ uuid(12A423DB-A1CD-45B5-9279-DE47CE00665F) ]
+	coclass clsTierAppearance
+	{
+		[default] dispinterface IclsTierAppearance;
+	};
+	
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTierArea
+	[ uuid(2CCB666A-3795-4A7C-A17A-CAD772E1775A) ]
+	dispinterface IclsTierArea
+	{
+	properties:
+		[id(1)] IclsTier* UpperTier;
+		[id(2)] IclsTier* MiddleTier;
+		[id(3)] IclsTier* LowerTier;
+		[id(4)] IclsTierFormat* TierFormat;
+		[id(5)] IclsTierAppearance* TierAppearance;
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(3B201B8A-7C68-4004-A63D-535495DE9BE5) ]
+	coclass clsTierArea
+	{
+		[default] dispinterface IclsTierArea;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTickMark
+	[ uuid(D8894736-C3AF-49E0-8B4B-1B7BD946E5B3) ]
+	dispinterface IclsTickMark
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] BOOLEAN DisplayText;
+		[id(3)] BSTR TextFormat;
+		[id(4)] BSTR Tag;
+		[id(5)] E_INTERVAL Interval;
+		[id(6)] E_TICKMARKTYPES TickMarkType;
+		[id(9)] LONG Index;
+		[id(10)] LONG Factor;
+	methods:
+		[id(7)] BSTR GetXML(void);
+		[id(8)] void SetXML(BSTR sXML);
+	};
+	[ uuid(C3ECAABF-A4AA-40A4-9C88-1DE80C827B61) ]
+	coclass clsTickMark
+	{
+		[default] dispinterface IclsTickMark;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTickMarks
+	[ uuid(35873283-4408-4E22-A471-7FF0D5D89B7F) ]
+	dispinterface IclsTickMarks
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsTickMark* Item(BSTR Index);
+		[id(0), propget] IclsTickMark* _Item(LPCTSTR Index);
+		[id(3)] void Clear(void);
+		[id(4)] void Remove(BSTR Index);
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(7)] IclsTickMark* Add(E_INTERVAL Interval, LONG Factor, E_TICKMARKTYPES TickMarkType, [defaultvalue(FALSE)] BOOLEAN DisplayText, [defaultvalue("")] BSTR TextFormat, [defaultvalue("")] BSTR Key);
+	};
+	[ uuid(0A97ECFD-F3DF-4EE5-A524-1F78627DD60C) ]
+	coclass clsTickMarks
+	{
+		[default] dispinterface IclsTickMarks;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTickMarkArea
+	[ uuid(B1FAA52F-E118-4B96-9E01-8CF988191E95) ]
+	dispinterface IclsTickMarkArea
+	{
+	properties:
+		[id(1)] LONG Height;
+		[id(2)] LONG BigTickMarkHeight;
+		[id(3)] LONG MediumTickMarkHeight;
+		[id(4)] LONG SmallTickMarkHeight;
+		[id(5)] BOOLEAN Visible;
+		[id(6)] BSTR StyleIndex;
+		[id(7)] LONG TextOffset;
+		[id(8)] IclsTickMarks* TickMarks;
+		[id(11)] IclsStyle* Style;
+	methods:
+		[id(9)] BSTR GetXML(void);
+		[id(10)] void SetXML(BSTR sXML);
+	};
+	[ uuid(9D312576-FE4E-4C95-9976-C62260882B80) ]
+	coclass clsTickMarkArea
+	{
+		[default] dispinterface IclsTickMarkArea;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsProgressLine
+	[ uuid(9930967C-34EF-40E6-9EF6-96F34EECCF2C) ]
+	dispinterface IclsProgressLine
+	{
+	properties:
+		[id(1)] DATE Position;
+		[id(2)] OLE_COLOR ForeColor;
+		[id(3)] E_PROGRESSLINELENGTH Length;
+		[id(4)] E_PROGRESSLINETYPE LineType;
+		[id(7)] LONG Width;
+		[id(8)] E_PROGRESSLINESTYLE LineStyle;
+		[id(11)] BSTR StyleIndex;
+		[id(12)] IclsStyle* Style;
+	methods:
+		[id(5)] BSTR GetXML(void);
+		[id(6)] void SetXML(BSTR sXML);
+		[id(9)] void SetColor(LONG Index, OLE_COLOR oColor);
+		[id(10)] OLE_COLOR GetColor(LONG Index);
+	};
+	[ uuid(DC07329D-92E4-4C79-973C-07E9B299560D) ]
+	coclass clsProgressLine
+	{
+		[default] dispinterface IclsProgressLine;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsTimeLine
+	[ uuid(8C665285-172E-4311-A086-D861C33C1110) ]
+	dispinterface IclsTimeLine
+	{
+	properties:
+		[id(1)] BSTR StyleIndex;
+		[id(2)] IclsStyle* Style;
+		[id(3)] OLE_COLOR ForeColor;
+		[id(4)] DATE EndDate;
+		[id(5)] DATE StartDate;
+		[id(6)] LONG Height;
+		[id(7)] LONG Top;
+		[id(8)] LONG Bottom;
+		[id(9)] IclsTimeLineScrollBar* TimeLineScrollBar;
+		[id(10)] IclsTierArea* TierArea;
+		[id(11)] IclsTickMarkArea* TickMarkArea;
+		[id(12)] IclsProgressLine* ProgressLine;
+	methods:
+		[id(13)] void Move(E_INTERVAL Interval, LONG Factor);
+		[id(14)] void Position(DATE TimeLineStartDate);
+		[id(15)] BSTR GetXML(void);
+		[id(16)] void SetXML(BSTR sXML);
+	};
+	[ uuid(3A9BBC36-07A0-447C-A11A-6C374B25EE80) ]
+	coclass clsTimeLine
+	{
+		[default] dispinterface IclsTimeLine;
+	};
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for clsView
+	[ uuid(4C3F2458-7CED-4729-9B42-99AD68923E07) ]
+	dispinterface IclsView
+	{
+	properties:
+		[id(1)] BSTR Key;
+		[id(2)] IclsTimeLine* TimeLine;
+		[id(3)] IclsClientArea* ClientArea;
+		[id(4)] BSTR Tag;
+		[id(5)] E_INTERVAL Interval;
+		[id(8)] LONG Index;
+		[id(9)] LONG Factor;
+	methods:
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+		[id(10)] void Clear(void);
+		[id(11)] IclsView* Clone(BSTR Key);
+	};
+	[ uuid(3EE51508-D007-4D56-8409-BAFB60B3AAA3) ]
+	coclass clsView
+	{
+		[default] dispinterface IclsView;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsViews
+	[ uuid(72ED06E0-4FF4-4851-BF45-E65708C520CF) ]
+	dispinterface IclsViews
+	{
+	properties:
+		[id(1)] LONG Count;
+	methods:
+		[id(2), propget] IclsView* Item(BSTR Index);
+		[id(0), propget] IclsView* _Item(LPCTSTR Index);
+		[id(3)] IclsView* Add(E_INTERVAL Interval,LONG Factor,E_TIERTYPE UpperTierType,E_TIERTYPE MiddleTierType,E_TIERTYPE LowerTierType,BSTR Key);
+		[id(4)] void Clear(void);
+		[id(5)] void Remove(BSTR Index);
+		[id(6)] BSTR GetXML(void);
+		[id(7)] void SetXML(BSTR sXML);
+	};
+	[ uuid(830F6BCD-4925-417D-A94A-131410CB8D81) ]
+	coclass clsViews
+	{
+		[default] dispinterface IclsViews;
+	};
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for CustomTierDrawEventArgs
+	[ uuid(646AA6AF-316C-4812-BDF1-2FA3BE0F3D19) ]
+	dispinterface ICustomTierDrawEventArgs
+	{
+	properties:
+		[id(1)] BSTR Text;
+		[id(2)] BOOLEAN CustomDraw;
+		[id(3)] BSTR StyleIndex;
+		[id(4)] E_TIERPOSITION TierPosition;
+		[id(5)] DATE StartDate;
+		[id(6)] DATE EndDate;
+		[id(7)] LONG Left;
+		[id(8)] LONG Top;
+		[id(9)] LONG Right;
+		[id(10)] LONG Bottom;
+		[id(11)] LONG LeftTrim;
+		[id(12)] LONG RightTrim;
+		[id(13)] IclsGDIGraphics* Graphics;
+		[id(14)] E_INTERVAL Interval;
+		[id(15)] LONG Factor;
+	methods:
+	};
+	[ uuid(3A149262-BDB0-4A85-AC3A-E449928EAC80) ]
+	coclass CustomTierDrawEventArgs
+	{
+		[default] dispinterface ICustomTierDrawEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for DrawEventArgs
+	[ uuid(B6D3C1FB-C891-4802-88FF-1956E4DA1AFA) ]
+	dispinterface IDrawEventArgs
+	{
+	properties:
+		[id(1)] E_EVENTTARGET EventTarget;
+		[id(2)] BOOLEAN CustomDraw;
+		[id(3)] LONG ObjectIndex;
+		[id(4)] LONG ParentObjectIndex;
+		[id(5)] IclsGDIGraphics* Graphics;
+	methods:
+	};
+	[ uuid(DCE73646-554E-4FDF-9DCE-67CD7C6CFEEC) ]
+	coclass DrawEventArgs
+	{
+		[default] dispinterface IDrawEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for ErrorEventArgs
+	[ uuid(E8BAA510-4CF6-4B7E-811C-5912EF5EDF8B) ]
+	dispinterface IErrorEventArgs
+	{
+	properties:
+		[id(1)] LONG Number;
+		[id(2)] BSTR Description;
+		[id(3)] BSTR Source;
+	methods:
+	};
+	[ uuid(B52229FE-2B35-4446-BB40-B572B4953925) ]
+	coclass ErrorEventArgs
+	{
+		[default] dispinterface IErrorEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for KeyEventArgs
+	[ uuid(88FBA620-8A17-41B4-8F9A-4F88C2C91D62) ]
+	dispinterface IKeyEventArgs
+	{
+	properties:
+		[id(1)] E_KEYS KeyCode;
+		[id(2)] BOOLEAN Cancel;
+		[id(3)] SHORT CharacterCode;
+		[id(4)] BOOLEAN Alt;
+		[id(5)] BOOLEAN Shift;
+		[id(6)] BOOLEAN Control;
+	methods:
+	};
+	[ uuid(B1D465D7-89DE-405D-A1B3-1FCCD6B479DB) ]
+	coclass KeyEventArgs
+	{
+		[default] dispinterface IKeyEventArgs;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for CustomTickMarkAreaDrawEventArgs
+	[ uuid(E96E6EAB-84A6-442F-8964-B5C817A03DC9) ]
+	dispinterface ICustomTickMarkAreaDrawEventArgs
+	{
+	properties:
+		[id(1)] BOOLEAN CustomDraw;
+		[id(2)] IclsGDIGraphics* Graphics;
+		[id(3)] LONG Left;
+		[id(4)] LONG Top;
+		[id(5)] LONG Right;
+		[id(6)] LONG Bottom;
+		[id(7)] DATE dtDate;
+		[id(8)] IclsTickMark* oTickMark;
+		[id(9)] LONG X;
+	methods:
+	};
+	[ uuid(2F041DC3-43F5-4D37-91E1-40AD2ABD92E3) ]
+	coclass CustomTickMarkAreaDrawEventArgs
+	{
+		[default] dispinterface ICustomTickMarkAreaDrawEventArgs;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for TickMarkTextDrawEventArgs
+	[ uuid(DB523317-B81D-47BB-8A47-084C8CC51E58) ]
+	dispinterface ITickMarkTextDrawEventArgs
+	{
+	properties:
+		[id(1)] BOOLEAN CustomDraw;
+		[id(2)] BSTR Text;
+		[id(3)] DATE dtDate;
+	methods:
+	};
+	[ uuid(96FE4B60-D1D4-4ABE-ADF3-A82F82587DFE) ]
+	coclass TickMarkTextDrawEventArgs
+	{
+		[default] dispinterface ITickMarkTextDrawEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for MouseEventArgs
+	[ uuid(0840CFEE-B2ED-4C2A-8BBD-B6521B17FDEC) ]
+	dispinterface IMouseEventArgs
+	{
+	properties:
+		[id(1)] LONG X;
+		[id(2)] LONG Y;
+		[id(3)] E_EVENTTARGET EventTarget;
+		[id(4)] E_OPERATION Operation;
+		[id(5)] E_MOUSEBUTTONS Button;
+		[id(6)] BOOLEAN Cancel;
+	methods:
+	};
+	[ uuid(7D374166-8B39-4ADC-BB4A-9D2493790313) ]
+	coclass MouseEventArgs
+	{
+		[default] dispinterface IMouseEventArgs;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for MouseWheelEventArgs
+	[ uuid(FF6C5F85-5D43-4AA9-8643-6F918560F7D5) ]
+	dispinterface IMouseWheelEventArgs
+	{
+	properties:
+		[id(1)] LONG X;
+		[id(2)] LONG Y;
+		[id(3)] E_MOUSEBUTTONS Button;
+		[id(4)] LONG Delta;
+	methods:
+	};
+	[ uuid(3B5A6B8F-CA6A-4E07-9FDB-B1DD06B68592) ]
+	coclass MouseWheelEventArgs
+	{
+		[default] dispinterface IMouseWheelEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for NodeEventArgs
+	[ uuid(ABC03980-6B75-4BAB-B542-01566BA94DDF) ]
+	dispinterface INodeEventArgs
+	{
+	properties:
+		[id(1)] LONG Index;
+	methods:
+	};
+	[ uuid(B6B5372D-5328-4A1A-85A7-4378C4F080DF) ]
+	coclass NodeEventArgs
+	{
+		[default] dispinterface INodeEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for ObjectAddedEventArgs
+	[ uuid(BC1197F1-B59B-4BC6-B33F-65461516C17E) ]
+	dispinterface IObjectAddedEventArgs
+	{
+	properties:
+		[id(1)] LONG TaskIndex;
+		[id(2)] LONG PredecessorObjectIndex;
+		[id(3)] LONG PredecessorTaskIndex;
+		[id(4)] E_CONSTRAINTTYPE PredecessorType;
+		[id(5)] BSTR TaskKey;
+		[id(6)] BSTR PredecessorTaskKey;
+		[id(7)] E_EVENTTARGET EventTarget;
+	methods:
+	};
+	[ uuid(72CE6550-58B2-44B9-B93F-8E41525040F7) ]
+	coclass ObjectAddedEventArgs
+	{
+		[default] dispinterface IObjectAddedEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for ObjectSelectedEventArgs
+	[ uuid(5DCF8B10-1EB5-464E-92F3-A7FEECA77EB3) ]
+	dispinterface IObjectSelectedEventArgs
+	{
+	properties:
+		[id(1)] E_EVENTTARGET EventTarget;
+		[id(2)] LONG ObjectIndex;
+		[id(3)] LONG ParentObjectIndex;
+	methods:
+	};
+	[ uuid(4F2415FE-F559-4C54-B31D-BCB1DCA7BB1F) ]
+	coclass ObjectSelectedEventArgs
+	{
+		[default] dispinterface IObjectSelectedEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for ObjectStateChangedEventArgs
+	[ uuid(54AD7E85-3885-40D2-BF6A-07EA30563764) ]
+	dispinterface IObjectStateChangedEventArgs
+	{
+	properties:
+		[id(1)] E_EVENTTARGET EventTarget;
+		[id(2)] LONG Index;
+		[id(3)] BOOLEAN Cancel;
+		[id(4)] LONG DestinationIndex;
+		[id(5)] LONG InitialRowIndex;
+		[id(6)] LONG FinalRowIndex;
+		[id(7)] LONG InitialColumnIndex;
+		[id(8)] LONG FinalColumnIndex;
+		[id(9)] DATE StartDate;
+		[id(10)] DATE EndDate;
+		[id(11)] E_CHANGETYPE ChangeType;
+	methods:
+	};
+	[ uuid(20B012E9-C84B-47BB-8DDB-32838732F148) ]
+	coclass ObjectStateChangedEventArgs
+	{
+		[default] dispinterface IObjectStateChangedEventArgs;
+	};
+
+
+//************************************************************************************
+
+	//  Primary dispatch interface for PredecessorExceptionEventArgs		
+	[ uuid(C6D3BD00-2EE8-49D2-9659-5D6E430C4EC5) ]
+	dispinterface IPredecessorExceptionEventArgs
+	{
+	properties:
+		[id(1)] LONG PredecessorIndex;
+		[id(2)] E_CONSTRAINTTYPE PredecessorType;
+	methods:
+	};
+	[ uuid(A13DA36E-68CD-4D20-890B-6D70E09A6938) ]
+	coclass PredecessorExceptionEventArgs
+	{
+		[default] dispinterface IPredecessorExceptionEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for PredecessorDrawEventArgs
+	[ uuid(B0C7C442-81C0-449C-A916-16CE8C8129B4) ]
+	dispinterface IPredecessorDrawEventArgs
+	{
+	properties:
+		[id(1)] BOOLEAN CustomDraw;
+		[id(2)] IclsGDIGraphics* Graphics;
+		[id(3)] LONG PredecessorIndex;
+		[id(4)] LONG TaskIndex;
+		[id(5)] E_CONSTRAINTTYPE PredecessorType;
+	methods:
+	};
+	[ uuid(217E5088-3784-489D-B07B-2CEE068EE91B) ]
+	coclass PredecessorDrawEventArgs
+	{
+		[default] dispinterface IPredecessorDrawEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+
+	//  Primary dispatch interface for ScrollEventArgs
+	[ uuid(B7208B5F-B8E0-4A9B-A5A1-E6850492549E) ]
+	dispinterface IScrollEventArgs
+	{
+	properties:
+		[id(1)] E_SCROLLBAR ScrollBarType;
+		[id(2)] LONG Offset;
+	methods:
+	};
+	[ uuid(D42F2C72-9AEA-45C4-A1A2-4B5F6373A839) ]
+	coclass ScrollEventArgs
+	{
+		[default] dispinterface IScrollEventArgs;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for TextEditEventArgs
+	[ uuid(97259A41-067C-423D-B081-CFB9F17E4D74) ]
+	dispinterface ITextEditEventArgs
+	{
+	properties:
+		[id(1)] E_TEXTOBJECTTYPE ObjectType;
+		[id(2)] LONG ObjectIndex;
+		[id(3)] LONG ParentObjectIndex;
+		[id(4)] BSTR Text;
+	methods:
+	};
+	[ uuid(DE9924E5-C09C-4EA0-8FD6-BB0E9D5C3B92) ]
+	coclass TextEditEventArgs
+	{
+		[default] dispinterface ITextEditEventArgs;
+	};
+	
+	
+//************************************************************************************
+
+	//  Primary dispatch interface for ToolTipEventArgs
+	[ uuid(984AD3A4-0822-4BED-87E0-5EBF27776FBC) ]
+	dispinterface IToolTipEventArgs
+	{
+	properties:
+		[id(1)] LONG InitialRowIndex;
+		[id(2)] LONG FinalRowIndex;
+		[id(3)] LONG TaskIndex;
+		[id(4)] LONG MilestoneIndex;
+		[id(5)] LONG PercentageIndex;
+		[id(6)] LONG RowIndex;
+		[id(7)] LONG CellIndex;
+		[id(8)] LONG ColumnIndex;
+		[id(9)] DATE InitialStartDate;
+		[id(10)] DATE InitialEndDate;
+		[id(11)] DATE StartDate;
+		[id(12)] DATE EndDate;
+		[id(13)] LONG XStart;
+		[id(14)] LONG XEnd;
+		[id(15)] E_OPERATION Operation;
+		[id(16)] E_EVENTTARGET EventTarget;
+		[id(17)] BSTR TaskPosition;
+		[id(18)] BSTR PredecessorPosition;
+		[id(19)] LONG X;
+		[id(20)] LONG Y;
+		[id(21)] LONG X1;
+		[id(22)] LONG Y1;
+		[id(23)] LONG X2;
+		[id(24)] LONG Y2;
+		[id(25)] BOOLEAN CustomDraw;
+		[id(26)] IclsGDIGraphics* Graphics;
+		[id(27)] E_TOOLTIPTYPE ToolTipType;
+	methods:
+	};
+	[ uuid(AFF74710-C6A8-4F6F-A6D9-B19D5EA3F28B) ]
+	coclass ToolTipEventArgs
+	{
+		[default] dispinterface IToolTipEventArgs;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for PagePrintEventArgs
+	[ uuid(B744D7D6-DB94-4A0E-A4C1-6A9FADF54A68) ]
+	dispinterface IPagePrintEventArgs
+	{
+		properties:
+			[id(1)] LONG PageNumber;
+			[id(2)] IclsGDIGraphics* Graphics;
+			[id(3)] LONG X1;
+			[id(4)] LONG Y1;
+			[id(5)] LONG X2;
+			[id(6)] LONG Y2;
+			[id(7)] LONG PageWidth;
+			[id(8)] LONG PageHeight;
+			[id(9)] LONG ActualPageWidth;
+			[id(10)] LONG ActualPageHeight;
+		methods:
+	};
+	[ uuid(A6872896-C66A-461D-AD58-728D932E1B38) ]
+	coclass PagePrintEventArgs
+	{
+		[default] dispinterface IPagePrintEventArgs;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for clsConfiguration
+	[ uuid(7A3C6473-E7D2-4898-8951-3C87AA1F69A5) ]
+	dispinterface IclsConfiguration
+	{
+		properties:
+			[id(1)] E_WEEKDAY FirstDayOfWeek;
+			[id(2)] E_CALENDARWEEKRULES CalendarWeekRule;
+			[id(3)] BOOLEAN ISO8601Weeks;
+			[id(6)] OLE_COLOR RowHighlightedBackColor;
+			[id(7)] OLE_COLOR RowEvenBackColor;
+			[id(8)] OLE_COLOR RowOddBackColor;
+			[id(9)] BOOLEAN AlternatingRowStyles;
+			[id(10)] IclsFont* DefaultFont;
+			[id(11)] IclsStyle* DefaultControlStyle;
+			[id(12)] IclsStyle* DefaultTaskStyle;
+			[id(13)] IclsStyle* DefaultRowStyle;
+			[id(14)] IclsStyle* DefaultClientAreaStyle;
+			[id(15)] IclsStyle* DefaultCellStyle;
+			[id(16)] IclsStyle* DefaultColumnStyle;
+			[id(17)] IclsStyle* DefaultPercentageStyle;
+			[id(18)] IclsStyle* DefaultPredecessorStyle;
+			[id(19)] IclsStyle* DefaultTimeLineStyle;
+			[id(20)] IclsStyle* DefaultTimeBlockStyle;
+			[id(21)] IclsStyle* DefaultTickMarkAreaStyle;
+			[id(22)] IclsStyle* DefaultSplitterStyle;
+			[id(23)] IclsStyle* DefaultProgressLineStyle;
+			[id(24)] IclsStyle* DefaultNodeStyle;
+			[id(25)] IclsStyle* DefaultTierStyle;
+			[id(26)] IclsStyle* DefaultScrollBarStyle;
+			[id(27)] IclsStyle* DefaultSBSeparatorStyle;
+			[id(28)] IclsStyle* DefaultSBNormalStyle;
+			[id(29)] IclsStyle* DefaultSBPressedStyle;
+			[id(30)] IclsStyle* DefaultSBDisabledStyle;
+
+		methods:
+			[id(4)] BSTR GetXML(void);
+			[id(5)] void SetXML(BSTR sXML);
+	};
+	[ uuid(C105F698-DED6-470A-8A59-CDC14E858C72) ]
+	coclass clsConfiguration
+	{
+		[default] dispinterface IclsConfiguration;
+	};
+
+//************************************************************************************
+
+		//  Primary dispatch interface for ControlTemplateGradient	
+	[ uuid(C6257C4E-4DE3-406D-AECB-11D8183BD5DF) ]
+	dispinterface IControlTemplateGradient
+	{
+		properties:
+			[id(1)] OLE_COLOR ControlBorderColor;
+			[id(2)] OLE_COLOR HeadingBorderColor;
+			[id(3)] OLE_COLOR HeadingForeColor;
+			[id(4)] OLE_COLOR RowForeColor;
+			[id(5)] GRE_GRADIENTFILLMODE GradientFillMode;
+			[id(6)] OLE_COLOR StartGradientColor;
+			[id(7)] OLE_COLOR EndGradientColor;
+			[id(8)] OLE_COLOR TreeviewColor;
+			[id(9)] OLE_COLOR RowBorderColor;
+		methods:
+	};
+	[ uuid(CAFA3808-FDAA-4AF4-8AD8-63A17DA79566) ]
+	coclass ControlTemplateGradient
+	{
+		[default] dispinterface IControlTemplateGradient;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for ControlTemplateSolid
+	[ uuid(76B6BFCB-3922-451C-ABDB-9E9DC26CD8C4) ]
+	dispinterface IControlTemplateSolid
+	{
+		properties:
+			[id(1)] OLE_COLOR ControlBorderColor;
+			[id(2)] OLE_COLOR HeadingBorderColor;
+			[id(3)] OLE_COLOR HeadingForeColor;
+			[id(4)] OLE_COLOR RowForeColor;
+			[id(5)] OLE_COLOR HeadingBackColor;
+			[id(6)] OLE_COLOR TreeviewColor;
+			[id(7)] OLE_COLOR RowBorderColor;
+			[id(8)] OLE_COLOR TimeBlockBackColor;
+		methods:
+	};
+	[ uuid(2678DCAD-0753-40E7-8207-852D1B0AAB35) ]
+	coclass ControlTemplateSolid
+	{
+		[default] dispinterface IControlTemplateSolid;
+	};
+
+//************************************************************************************
+
+	//  Primary dispatch interface for CActiveGanttVCCtl
+	[ uuid(3F906ECE-6A26-4AD1-85D4-BC7B436FBA8A), helpstring("Dispatch interface for ActiveGanttVC Scheduler Component"), hidden ]
+	dispinterface _DActiveGanttVC
+	{
+	properties:
+		[id(1)] E_REPORTERRORS ErrorReports;
+		[id(2)] BSTR CurrentLayer;
+		[id(3)] BSTR CurrentView;
+		[id(4)] IclsView* CurrentViewObject;
+		[id(5)] IclsToolTip* ToolTip;
+		[id(6)] E_SCROLLBEHAVIOUR ScrollBarBehaviour;
+		[id(7)] E_TIMEBLOCKBEHAVIOUR TimeBlockBehaviour;
+		[id(8)] LONG SelectedTaskIndex;
+		[id(9)] LONG SelectedColumnIndex;
+		[id(10)] LONG SelectedRowIndex;
+		[id(11)] LONG SelectedCellIndex;
+		[id(12)] LONG SelectedPercentageIndex;
+		[id(13)] LONG TreeviewColumnIndex;
+		[id(14)] IclsCultureInfo* Culture;
+		[id(15)] BSTR ModuleCompletePath;
+		[id(16)] BSTR Version;
+		[id(17)] BOOLEAN AllowSplitterMove;
+		[id(18)] BOOLEAN AllowPredecessorAdd;
+		[id(19)] BOOLEAN AllowAdd;
+		[id(20)] BOOLEAN AllowEdit;
+		[id(21)] BOOLEAN AllowColumnSize;
+		[id(22)] BOOLEAN AllowColumnMove;
+		[id(23)] BOOLEAN AllowRowSize;
+		[id(24)] BOOLEAN AllowRowMove;
+		[id(25)] BOOLEAN AllowTimeLineScroll;
+		[id(26)] E_ADDMODE AddMode;
+		[id(27)] E_LAYEROBJECTENABLE LayerEnableObjects;
+		[id(28)] BOOLEAN DoubleBuffering;
+		[id(29)] LONG MinRowHeight;
+		[id(30)] LONG MinColumnWidth;
+		[id(31)] IclsRows* Rows;
+		[id(32)] IclsTasks* Tasks;
+		[id(33)] IclsColumns* Columns;
+		[id(34)] IclsStyles* Styles;
+		[id(35)] IclsLayers* Layers;
+		[id(36)] IclsPercentages* Percentages;
+		[id(37)] IclsTimeBlocks* TimeBlocks;
+		[id(38)] IclsViews* Views;
+		[id(39)] IclsSplitter* Splitter;
+		[id(40)] IclsPrinter* Printer;
+		[id(41)] IclsTreeview* Treeview;
+		[id(42)] IclsDrawing* Drawing;
+		[id(43)] IclsMath* MathLib;
+		[id(44)] IclsVerticalScrollBar* VerticalScrollBar;
+		[id(45)] IclsHorizontalScrollBar* HorizontalScrollBar;
+		[id(46)] IToolTipEventArgs* ToolTipEventArgs;
+		[id(47)] IObjectAddedEventArgs* ObjectAddedEventArgs;
+		[id(48)] ICustomTierDrawEventArgs* CustomTierDrawEventArgs;
+		[id(49)] IMouseEventArgs* MouseEventArgs;
+		[id(50)] IKeyEventArgs* KeyEventArgs;
+		[id(51)] IScrollEventArgs* ScrollEventArgs;
+		[id(52)] IDrawEventArgs* DrawEventArgs;
+		[id(53)] IPredecessorDrawEventArgs* PredecessorDrawEventArgs;
+		[id(54)] IObjectSelectedEventArgs* ObjectSelectedEventArgs;
+		[id(55)] IObjectStateChangedEventArgs* ObjectStateChangedEventArgs;
+		[id(56)] IErrorEventArgs* ErrorEventArgs;
+		[id(57)] INodeEventArgs* NodeEventArgs;
+		[id(58)] BSTR ControlTag;
+		[id(59)] IDispatch* GetIDispatch;
+		[id(60)] IMouseWheelEventArgs* MouseWheelEventArgs;
+		[id(61)] IclsTierAppearance* TierAppearance;
+		[id(62)] IclsTierFormat* TierFormat;
+		[id(63)] E_OBJECTSCOPE TierAppearanceScope;
+		[id(64)] E_OBJECTSCOPE TierFormatScope;
+		[id(65)] BSTR StyleIndex;
+		[id(66)] IclsStyle* Style;
+		[id(67)] IclsImage* Image;
+		[id(68)] BSTR ImageTag;
+		[id(69)] IclsScrollBarSeparator* ScrollBarSeparator;
+		[id(70)] ITextEditEventArgs* TextEditEventArgs;
+		[id(71)] IclsPredecessors* Predecessors;
+		[id(72)] IPredecessorExceptionEventArgs* PredecessorExceptionEventArgs;
+		[id(73)] LONG SelectedPredecessorIndex;
+		[id(74)] BOOLEAN EnforcePredecessors;
+		[id(75)] E_PREDECESSORMODE PredecessorMode;
+		[id(76)] E_INTERVAL AddDurationInterval;
+		[id(88)] IclsTimeLineScrollBar* TimeLineScrollBar;
+		[id(89)] IclsProgressLine* ProgressLine;
+		[id(90)] E_OBJECTSCOPE TimeLineScrollBarScope;
+		[id(91)] E_OBJECTSCOPE ProgressLineScope;
+		[id(92)] IclsConfiguration* Configuration;
+		[id(95)] E_CONTROLTEMPLATE ControlTemplate;
+		[id(96)] E_OBJECTTEMPLATE ObjectTemplate;
+		[id(98)] BSTR PrinterErrorMessage;
+	methods:
+		[id(77)] void WriteXML(BSTR url);
+		[id(78)] void ReadXML(BSTR url);
+		[id(79)] void SetXML(BSTR sXML);
+		[id(80)] BSTR GetXML(void);
+		[id(81)] void ClearSelections(void);
+		[id(82)] void Clear(void);
+		[id(83)] void SaveToImage(BSTR Path, GRE_IMAGEFORMAT Format);
+		[id(84)] void AboutBox(void);
+		[id(85)] void Redraw(void);
+		[id(86)] void ForceEndTextEdit(void);
+		[id(87)] void CheckPredecessors(void);
+		[id(93)] void ApplyTemplateSolid(IControlTemplateSolid* ControlTemplate, E_OBJECTTEMPLATE ObjectTemplate);
+		[id(94)] void ApplyTemplateGradient(IControlTemplateGradient* ControlTemplate, E_OBJECTTEMPLATE ObjectTemplate);
+		[id(97)] void ApplyTemplate(E_CONTROLTEMPLATE ControlTemplate, E_OBJECTTEMPLATE ObjectTemplate);
+	};
+	[ uuid(B63F7141-31C8-4BC2-A81D-D90188AB9DC9), helpstring("Event interface for ActiveGanttVC Scheduler Component"), hidden ]
+	dispinterface _DActiveGanttVCEvents
+	{
+		properties:
+		methods:
+		[id(1)] void ControlClick(IMouseEventArgs* e);
+		[id(2)] void ControlDblClick(IMouseEventArgs* e);
+		[id(3)] void ControlMouseDown(IMouseEventArgs* e);
+		[id(4)] void ControlMouseMove(IMouseEventArgs* e);
+		[id(5)] void ControlMouseUp(IMouseEventArgs* e);
+		[id(6)] void ControlMouseHover(IMouseEventArgs* e);
+		[id(7)] void ControlKeyDown(IKeyEventArgs* e);
+		[id(8)] void ControlKeyPress(IKeyEventArgs* e);
+		[id(9)] void ControlKeyUp(IKeyEventArgs* e);
+		[id(10)] void ControlScroll(IScrollEventArgs* e);
+		[id(11)] void Draw(IDrawEventArgs* e);
+		[id(12)] void PredecessorDraw(IPredecessorDrawEventArgs* e);
+		[id(13)] void CustomTierDraw(ICustomTierDrawEventArgs* e);
+		[id(14)] void TierTextDraw(ICustomTierDrawEventArgs* e);
+		[id(15)] void ObjectAdded(IObjectAddedEventArgs* e);
+		[id(16)] void ObjectSelected(IObjectSelectedEventArgs* e);
+		[id(17)] void BeginObjectChange(IObjectStateChangedEventArgs* e);
+		[id(18)] void ObjectChange(IObjectStateChangedEventArgs* e);
+		[id(19)] void EndObjectChange(IObjectStateChangedEventArgs* e);
+		[id(20)] void CompleteObjectChange(IObjectStateChangedEventArgs* e);
+		[id(21)] void ActiveGanttError(IErrorEventArgs* e);
+		[id(22)] void NodeChecked(INodeEventArgs* e);
+		[id(23)] void NodeExpanded(INodeEventArgs* e);
+		[id(24)] void TimeLineChanged(void);
+		[id(25)] void ControlRedrawn(void);
+		[id(26)] void ControlDraw(void);
+		[id(27)] void ToolTipOnMouseHover(IToolTipEventArgs* e);
+		[id(28)] void ToolTipOnMouseMove(IToolTipEventArgs* e);
+		[id(29)] void OnMouseHoverToolTipDraw(IToolTipEventArgs* e);
+		[id(30)] void OnMouseMoveToolTipDraw(IToolTipEventArgs* e);
+		[id(31)] void ControlMouseWheel(IMouseWheelEventArgs* e);
+		[id(32)] void BeginTextEdit(ITextEditEventArgs* e);
+		[id(33)] void EndTextEdit(ITextEditEventArgs* e);
+		[id(34)] void PredecessorException(IPredecessorExceptionEventArgs* e);
+		[id(35)] void CustomTickMarkAreaDraw(ICustomTickMarkAreaDrawEventArgs* e);
+		[id(36)] void CustomTickMarkDraw(ICustomTickMarkAreaDrawEventArgs* e);
+		[id(37)] void TickMarkTextDraw(ITickMarkTextDrawEventArgs* e);
+		[id(38)] void PagePrint(IPagePrintEventArgs* e);
+	};
+	[ uuid(688B95D3-C09A-4E7D-8F01-F4BAC59CCA18), licensed, helpstring("ActiveGanttVC Scheduler Component"), control ]
+	coclass ActiveGanttVCCtl
+	{
+		[default] dispinterface _DActiveGanttVC;
+		[default, source] dispinterface _DActiveGanttVCEvents;
+	};
+
+
+
+};
